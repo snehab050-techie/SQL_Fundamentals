@@ -15,6 +15,11 @@ VALUES
 (102,"Suhas"),
 (103,"Janaki");
 
+INSERT INTO STUDENT(stu_id,stu_name)
+VALUES
+(104,"Oliver"),
+(105,"John");
+
 SELECT *
 FROM STUDENT;
 
@@ -51,6 +56,7 @@ ON s.stu_id = c.stu_crs_id;
 
 -- 2) LEFT JOIN - Aka Left Outer Join
 -- Returns all rows from left table and only the matching records from right table
+-- for students who did not take any course - null willbe printed in course columns
 
 SELECT s.stu_id, s.stu_name, c.crs_id, c.crs_name
 FROM STUDENT AS s
