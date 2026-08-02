@@ -62,3 +62,11 @@ SELECT s.stu_id, s.stu_name, c.crs_id, c.crs_name
 FROM STUDENT AS s
 LEFT JOIN COURSE AS c
 ON s.stu_id = c.stu_crs_id;
+
+-- 3) RIGHT Join
+-- Returns all records form right table and only the matching records from the left table
+
+SELECT *
+FROM STUDENT AS s
+RIGHT JOIN COURSE AS c
+ON s.stu_id = c.stu_crs_id;
