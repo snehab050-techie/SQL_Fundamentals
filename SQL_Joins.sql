@@ -63,9 +63,22 @@ FROM STUDENT AS s
 LEFT JOIN COURSE AS c
 ON s.stu_id = c.stu_crs_id;
 
--- 3) RIGHT Join
+-- 3) RIGHT Join - Aka RIGHT Outer Join
 -- Returns all records form right table and only the matching records from the left table
 
+SELECT *
+FROM STUDENT AS s
+RIGHT JOIN COURSE AS c
+ON s.stu_id = c.stu_crs_id;
+
+-- 4) FULL JOIN - Aka FULL Outer Join
+-- Returns all records when there is a match in either left or right table
+
+SELECT *
+FROM STUDENT AS s
+LEFT JOIN COURSE AS c
+ON s.stu_id = c.stu_crs_id
+UNION
 SELECT *
 FROM STUDENT AS s
 RIGHT JOIN COURSE AS c
