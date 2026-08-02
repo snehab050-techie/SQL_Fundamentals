@@ -83,3 +83,34 @@ SELECT *
 FROM STUDENT AS s
 RIGHT JOIN COURSE AS c
 ON s.stu_id = c.stu_crs_id;
+
+-- Other Joins 
+-- 1) Left Exclusive Join - To fetch only the non matching records from left table
+
+SELECT *
+FROM STUDENT AS s
+LEFT JOIN COURSE AS c
+ON s.stu_id = c.stu_crs_id
+WHERE c.stu_crs_id IS NULL;
+
+-- 2) Right Exclusive Join - To fetch only the non matching records from right table
+
+SELECT *
+FROM STUDENT AS s
+RIGHT JOIN COURSE AS c
+ON s.stu_id = c.stu_crs_id
+WHERE s.stu_id IS NULL;
+ 
+-- 3) Full Exclusive Join - To fetch only the non matching records from both left and right tables
+SELECT *
+FROM STUDENT AS s
+LEFT JOIN COURSE AS c
+ON s.stu_id = c.stu_crs_id
+WHERE c.stu_crs_id IS NULL
+UNION
+SELECT *
+FROM STUDENT AS s
+RIGHT JOIN COURSE AS c
+ON s.stu_id = c.stu_crs_id
+WHERE s.stu_id IS NULL;
+
