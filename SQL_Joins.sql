@@ -114,3 +114,25 @@ RIGHT JOIN COURSE AS c
 ON s.stu_id = c.stu_crs_id
 WHERE s.stu_id IS NULL;
 
+-- Self Join - Regular join but a table is joined with itself
+-- Eg: Find Employees Managers
+CREATE TABLE EMPLOYEE(
+	 id INT PRIMARY KEY,
+     name VARCHAR(50),
+     manager_id INT
+);
+
+INSERT INTO EMPLOYEE
+VALUES
+(101, "John", 103),
+(102, "Bob", 104),
+(103, "Oliver", NULL),
+(104, "Donald", 103);
+
+SELECT a.name AS manager_name ,b.name
+FROM EMPLOYEE AS a
+JOIN EMPLOYEE AS b
+ON a.id = b.manager_id;
+
+  
+
