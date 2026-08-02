@@ -36,9 +36,23 @@ VALUES
 (2, "IT", 101),
 (3, "CS", 102);
 
+INSERT INTO COURSE
+VALUES
+(4, "EE", 103),
+(5, "ECE", 101);
+
 -- fetch student details who are learning any course --
--- INNER JOIN -- Returns only matching records from two tables
+-- 1) INNER JOIN -- Returns only matching records from two tables
+
 SELECT s.stu_id, s.stu_name, c.crs_id, c.crs_name
 FROM STUDENT AS s
 INNER JOIN COURSE AS c
+ON s.stu_id = c.stu_crs_id;
+
+-- 2) LEFT JOIN - Aka Left Outer Join
+-- Returns all rows from left table and only the matching records from right table
+
+SELECT s.stu_id, s.stu_name, c.crs_id, c.crs_name
+FROM STUDENT AS s
+LEFT JOIN COURSE AS c
 ON s.stu_id = c.stu_crs_id;
