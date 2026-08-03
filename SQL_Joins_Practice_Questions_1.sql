@@ -32,3 +32,10 @@ VALUES
 (6,'Arjun',65000,104),
 (7,'Rohit',48000,106),
 (8,'Megha',52000,101);
+
+-- 1) Fetch employee and department details of only those employees 
+--    who have a valid department 
+SELECT e.*, d.dept_name
+FROM EMPLOYEE AS e
+INNER JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id;
