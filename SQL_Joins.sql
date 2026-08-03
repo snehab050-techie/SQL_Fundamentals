@@ -129,10 +129,9 @@ VALUES
 (103, "Oliver", NULL),
 (104, "Donald", 103);
 
-SELECT a.name AS manager_name ,b.name
+SELECT a.name as manager_name,b.name
 FROM EMPLOYEE AS a
 JOIN EMPLOYEE AS b
 ON a.id = b.manager_id;
-
   
 
