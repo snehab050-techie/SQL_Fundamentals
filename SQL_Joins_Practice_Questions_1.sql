@@ -55,3 +55,18 @@ WHERE d.dept_name = 'IT';
 
 -- 4) Display employees earning more than 55,000 
 -- along with department names
+SELECT e.emp_name, d.dept_name
+FROM EMPLOYEE AS e
+INNER JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+WHERE e.salary > 55000;
+
+-- 5) Display employee count in every department
+SELECT r.dept_id, d.dept_name,r.emp_count
+FROM (SELECT dept_id,COUNT(emp_id) AS emp_count
+FROM EMPLOYEE
+GROUP BY dept_id
+HAVING dept_id IS NOT NULL
+ORDER BY dept_id) AS r
+INNER JOIN Department AS d
+ON r.dept_id = d.dept_id;
