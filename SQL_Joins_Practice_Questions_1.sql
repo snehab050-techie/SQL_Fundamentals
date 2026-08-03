@@ -39,3 +39,19 @@ SELECT e.*, d.dept_name
 FROM EMPLOYEE AS e
 INNER JOIN DEPARTMENT AS d
 ON e.dept_id = d.dept_id;
+
+-- 2) Display employee name, department name and salary
+SELECT e.emp_name, d.dept_name, e.salary
+FROM EMPLOYEE AS e
+INNER JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id;
+
+-- 3) Display all employees working in the IT department
+SELECT e.emp_id, e.emp_name, d.dept_name
+FROM EMPLOYEE AS e
+LEFT JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+WHERE d.dept_name = 'IT';
+
+-- 4) Display employees earning more than 55,000 
+-- along with department names
