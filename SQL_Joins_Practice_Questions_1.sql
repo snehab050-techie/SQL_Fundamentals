@@ -70,3 +70,30 @@ HAVING dept_id IS NOT NULL
 ORDER BY dept_id) AS r
 INNER JOIN Department AS d
 ON r.dept_id = d.dept_id;
+
+-- 6) Display all employees even 
+-- if they don't belong to any department
+SELECT e.emp_name,d.dept_name
+FROM EMPLOYEE AS e
+LEFT JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id;
+
+-- 7) Find employees who are not assigned to any department
+SELECT e.emp_name
+FROM EMPLOYEE AS e
+LEFT JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+WHERE d.dept_name IS NULL;
+
+-- 8) Display all departments even if no employee works there
+SELECT distinct d.dept_name
+FROM EMPLOYEE AS e
+RIGHT JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id;
+
+-- 9) Find departments having no employees
+SELECT d.dept_name
+FROM EMPLOYEE AS e
+RIGHT JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+WHERE e.emp_id IS NULL;
