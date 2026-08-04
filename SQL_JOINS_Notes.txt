@@ -1,0 +1,50 @@
+
+Imp Note
+---------
+
+When you write just:
+
+JOIN
+
+it does not mean "any type of join." It specifically means INNER JOIN.
+
+For example, these two queries are identical:
+
+SELECT *
+FROM Employee e
+JOIN Department d
+ON e.dept_id = d.dept_id;
+
+SELECT *
+FROM Employee e
+INNER JOIN Department d
+ON e.dept_id = d.dept_id;
+
+JOIN is simply the short form of INNER JOIN.
+
+For other types, you must write them explicitly.
+
+There is no separate SELF JOIN keyword in SQL.
+
+A self join is simply a normal join where the same table appears twice using aliases.
+
+FROM Employee e
+JOIN Employee m
+ON e.manager_id = m.emp_id;
+
+Here, JOIN still means INNER JOIN—it's called a self join only because both sides of the join are the same table.
+
+JOIN is the shorthand for INNER JOIN. It returns only the rows that have matching values in both tables.
+
+Think of JOIN as a family:
+----------------------------
+
+JOINs
+│
+├── INNER JOIN   <- "JOIN" is shorthand for this
+├── LEFT JOIN
+├── RIGHT JOIN
+├── FULL OUTER JOIN
+├── CROSS JOIN
+└── SELF JOIN (a technique, not a keyword)
+

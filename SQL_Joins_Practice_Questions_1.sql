@@ -118,3 +118,24 @@ FROM EMPLOYEE AS e
 RIGHT JOIN DEPARTMENT AS d
 ON e.dept_id = d.dept_id;
 
+-- 12) Display employee names whose department starts with 'H'
+SELECT e.emp_name, d.dept_name
+FROM EMPLOYEE AS e
+LEFT JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+WHERE d.dept_name LIKE 'H%';
+
+-- 13) Display department names where average salary is 
+--     greater than 50,000
+SELECT d.dept_name,CEIL(AVG(e.salary)) AS avg_sal
+FROM EMPLOYEE AS e
+RIGHT JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+GROUP BY d.dept_name
+HAVING AVG(e.salary) > 50000;
+
+-- 14) Display highest-paid employee from each department
+
+
+
+
