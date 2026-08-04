@@ -144,5 +144,56 @@ WHERE e.salary =
 FROM EMPLOYEE
 WHERE dept_id = e.dept_id);
 
+-- 15) Display employees whose salary is greater than 
+-- the average salary of their department
 
+-- if dept_id is enough then there is no need of JOIN 
+-- if dept_name aslo be fetched then JOIN is needed
+SELECT e.*,d.dept_name
+FROM EMPLOYEE AS e
+INNER JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+WHERE e.salary > 
+(SELECT AVG(salary)
+FROM EMPLOYEE
+WHERE dept_id = e.dept_id);
 
+-- 16) Display all employees and sort them by department name
+--    Employees without departments should appear at the end
+SELECT *
+FROM EMPLOYEE AS e
+LEFT JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+ORDER BY d.dept_name DESC;
+
+-- 17) Display all departments and total salary paid in each department
+SELECT d.dept_name,SUM(e.salary) AS total_sal
+FROM EMPLOYEE AS e
+RIGHT JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id 
+GROUP BY d.dept_name;
+
+-- 18) Display employees who belong to departments having more than one employee.
+SELECT e.*
+FROM EMPLOYEE AS e
+WHERE e.dept_id IN (SELECT e.dept_id
+FROM EMPLOYEE AS e
+LEFT JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+GROUP BY e.dept_id
+HAVING COUNT(e.emp_id) > 1);
+
+-- 19) Display employee names and department names where salary is between 45,000 and 60,000
+SELECT e.emp_name, d.dept_name, e.salary
+FROM EMPLOYEE AS e
+JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id 
+WHERE e.salary BETWEEN 45000 AND 60000;
+
+-- 20) Display departments having exactly one employee
+SELECT e.dept_id, d.dept_name
+FROM EMPLOYEE AS e
+INNER JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+GROUP BY e.dept_id
+HAVING COUNT(e.emp_id) = 1;
