@@ -245,3 +245,51 @@ JOIN DEPARTMENT AS d
 ON e.dept_id = d.dept_id
 JOIN PROJECT AS p
 ON e.emp_id = p.emp_id;
+
+-- 5) Display department-wise project count
+SELECT d.dept_name,COUNT(p.project_id) AS project_count
+FROM EMPLOYEE AS e
+JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+JOIN PROJECT AS p
+ON e.emp_id = p.emp_id
+GROUP BY e.dept_id;
+
+-- 6) Display the highest-paid employee working on a project
+
+SELECT e.emp_name,p.project_name,e.salary
+FROM EMPLOYEE AS e
+LEFT JOIN PROJECT AS p
+ON e.emp_id = p.emp_id
+WHERE e.salary = (SELECT MAX(e.salary) AS max_sal
+FROM EMPLOYEE AS e);
+
+-- 7) Display project names where employees earn more than Rs 50,000
+SELECT p.project_name
+FROM EMPLOYEE AS e
+RIGHT JOIN PROJECT AS p
+ON e.emp_id = p.emp_id
+WHERE e.salary > 50000;
+
+-- 8) Display employees working in IT and assigned to a project
+SELECT e.emp_name, d.dept_name
+FROM EMPLOYEE AS e
+INNER JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+INNER JOIN PROJECT AS p
+ON e.emp_id = p.emp_id
+WHERE d.dept_name = 'IT'
+AND p.project_id IS NOT NULL;
+
+-- 9) Display employees who work in HR but have no project
+SELECT e.emp_name, d.dept_name, p.project_id
+FROM EMPLOYEE AS e
+JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+LEFT JOIN PROJECT AS p
+ON e.emp_id = p.emp_id
+WHERE d.dept_name = 'HR'
+AND p.project_id IS NULL;
+
+-- 10) Display projects assigned to employees earning the 
+--     maximum salary in their department
