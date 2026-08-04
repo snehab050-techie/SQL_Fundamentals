@@ -197,3 +197,45 @@ INNER JOIN DEPARTMENT AS d
 ON e.dept_id = d.dept_id
 GROUP BY e.dept_id
 HAVING COUNT(e.emp_id) = 1;
+
+-- more join queries - adding project table
+
+CREATE TABLE Project
+(
+	project_id INT PRIMARY KEY,
+    project_name VARCHAR(50),
+    emp_id INT
+);
+
+INSERT INTO Project
+VALUES 
+(201,'Income Tax Portal',1),
+(202,'GST Portal',2),
+(203,'Passport',4),
+(204,'Banking App',6),
+(205,'Healthcare',8),
+(206,'Insurance',10),
+(207, 'TDS', NULL),
+(208, 'Indigo', NULL);
+
+-- 1) Display employee name and project name
+SELECT e.emp_name, p.project_name
+FROM EMPLOYEE AS e
+INNER JOIN PROJECT AS p
+ON e.emp_id = p.emp_id;
+
+-- 2) Display employees who are not assigned to any project
+SELECT e.emp_id,e.emp_name
+FROM EMPLOYEE AS e
+LEFT JOIN PROJECT AS p
+ON e.emp_id = p.emp_id
+WHERE p.emp_id IS NULL;
+
+-- 3) Display projects without employees
+SELECT p.project_name
+FROM EMPLOYEE AS e
+RIGHT JOIN PROJECT AS p
+ON e.emp_id = p.emp_id
+WHERE p.emp_id IS NULL;
+
+-- 4) Display employee, department, and project name together
