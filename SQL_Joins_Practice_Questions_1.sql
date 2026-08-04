@@ -135,7 +135,14 @@ GROUP BY d.dept_name
 HAVING AVG(e.salary) > 50000;
 
 -- 14) Display highest-paid employee from each department
-
+SELECT d.dept_id,d.dept_name,e.emp_name,e.salary
+FROM EMPLOYEE AS e
+INNER JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id 
+WHERE e.salary = 
+(SELECT MAX(SALARY)
+FROM EMPLOYEE
+WHERE dept_id = e.dept_id);
 
 
 
