@@ -239,3 +239,9 @@ ON e.emp_id = p.emp_id
 WHERE p.emp_id IS NULL;
 
 -- 4) Display employee, department, and project name together
+SELECT e.emp_name, d.dept_name, p.project_name
+FROM EMPLOYEE AS e
+JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+JOIN PROJECT AS p
+ON e.emp_id = p.emp_id;
