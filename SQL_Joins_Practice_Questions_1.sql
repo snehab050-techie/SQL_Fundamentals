@@ -97,3 +97,24 @@ FROM EMPLOYEE AS e
 RIGHT JOIN DEPARTMENT AS d
 ON e.dept_id = d.dept_id
 WHERE e.emp_id IS NULL;
+
+-- 10) Display Department Name, Employee Name, 
+-- Include departments having no employees.
+SELECT e.emp_name,d.dept_name
+FROM EMPLOYEE AS e
+RIGHT JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id;
+
+-- 11) Display every employee and every department
+-- FULL JOIN keyword is not supported in MySQL (while it works in OracleSQL and PostgreSQL)
+-- We take Union of  left and right joins = full outer join
+SELECT *
+FROM EMPLOYEE AS e
+LEFT JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+UNION
+SELECT *
+FROM EMPLOYEE AS e
+RIGHT JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id;
+
