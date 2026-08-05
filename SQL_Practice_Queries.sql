@@ -33,3 +33,27 @@ SELECT DISTINCT salary
 FROM EMPLOYEE
 ORDER BY salary DESC
 LIMIT 1 OFFSET 2;
+
+-- 5) Employees earning above their department average
+SELECT e.emp_name,d.dept_name
+FROM EMPLOYEE AS e
+INNER JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+WHERE e.salary >
+(SELECT AVG(salary)
+FROM EMPLOYEE
+WHERE dept_id = e.dept_id);
+
+-- 6) Duplicate records from table
+SELECT emp_name, count(*) repeated
+FROM EMPLOYEE AS e
+GROUP BY e.emp_name
+HAVING COUNT(*) > 1;
+
+-- 7) Remove duplicate rows
+CREATE TABLE NewEmp AS
+SELECT DISTINCT *
+FROM EMPLOYEE;
+
+DROP TABLE Employee;
+ALTER TABLE NewEmp RENAME TO Employee;
