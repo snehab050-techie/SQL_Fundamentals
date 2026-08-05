@@ -293,3 +293,14 @@ AND p.project_id IS NULL;
 
 -- 10) Display projects assigned to employees earning the 
 --     maximum salary in their department
+SELECT e.emp_name,e.salary,d.dept_name,p.project_name
+FROM EMPLOYEE AS e
+INNER JOIN DEPARTMENT AS d
+ON e.dept_id = d.dept_id
+INNER JOIN PROJECT AS p
+ON e.emp_id = p.emp_id
+WHERE e.salary = (
+	SELECT MAX(salary)
+    FROM EMPLOYEE 
+    WHERE dept_id = e.dept_id
+);
