@@ -255,3 +255,90 @@ SELECT department, MIN(salary) min_salary, MAX(salary) max_salary, AVG(salary) a
 FROM employees
 GROUP BY department
 ORDER BY max_salary DESC;
+
+#38. Find the cities that have more than one employee, 
+# and display the city along with the number of employees.
+SELECT city, COUNT(*) emp_count
+FROM employees
+GROUP BY city
+HAVING COUNT(*) > 1;
+
+#39. Find the department with the highest average salary.
+SELECT department, AVG(salary) avg_salary
+FROM employees
+GROUP BY department
+ORDER BY avg_salary DESC
+LIMIT 1;
+
+#40. Find the departments where the highest salary is greater than 70,000.
+SELECT department, MAX(salary) highest_salary
+FROM employees
+GROUP BY department
+HAVING MAX(salary) > 70000;
+
+#41. Find the cities where the total salary of all employees is greater than 150,000.
+SELECT city, SUM(salary) total_salary
+FROM employees
+GROUP BY city
+HAVING SUM(salary) > 150000;
+
+#42. Find the department with the lowest average salary.
+SELECT department, AVG(salary) avg_salary
+FROM employees
+GROUP BY department
+ORDER BY avg_salary
+LIMIT 1;
+
+#43. Find the departments that have at least 2 employees and a total salary greater than 150,000.
+SELECT department, COUNT(*) emp_count, SUM(salary) total_salary
+FROM employees
+GROUP BY department
+HAVING COUNT(*) >= 2 AND SUM(salary) > 150000;
+
+#44. Find the city with the lowest total salary.
+SELECT city, SUM(salary) total_salary
+FROM employees
+GROUP BY city
+ORDER BY total_salary
+LIMIT 1;
+
+#45. Find the departments where the average salary is greater than 50,000 and the number of employees is at least 3.
+SELECT department, AVG(salary) avg_salary, COUNT(employee_id) emp_count
+FROM employees
+GROUP BY department
+HAVING AVG(salary) > 50000 AND COUNT(employee_id) >= 3;
+
+#46. Find the employee(s) who have the highest salary in the company.
+SELECT *
+FROM employees
+WHERE salary = (SELECT salary
+FROM employees
+ORDER BY salary DESC
+LIMIT 1);
+
+#47. Find the employee(s) who have the second-highest salary in the company.
+SELECT *
+FROM employees
+WHERE salary = (SELECT DISTINCT salary
+FROM employees
+ORDER BY salary DESC
+LIMIT 1 OFFSET 1);
+
+#48. Find the third-highest distinct salary in the company.
+SELECT DISTINCT salary
+FROM employees
+ORDER BY salary DESC
+LIMIT 1 OFFSET 2;
+
+#49. Find the department with the highest number of employees.
+SELECT department, COUNT(*) emp_count
+FROM employees
+GROUP BY department
+ORDER BY emp_count DESC
+LIMIT 1;
+
+#50. Find the department(s) whose minimum salary is greater than 55,000.
+SELECT department, MIN(salary) min_salary
+FROM employees
+GROUP BY department
+HAVING MIN(salary) > 55000;
