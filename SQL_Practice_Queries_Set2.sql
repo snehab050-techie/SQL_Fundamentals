@@ -155,3 +155,12 @@ FROM employees
 WHERE salary < (SELECT MAX(salary) max_salary
 FROM employees);
 
+#25. Find nth (1st, 2nd, 3rd, 4th, 5th, ... nth) highest salary
+-- eg: find 4th highest salary
+SELECT DISTINCT salary
+FROM employees
+ORDER BY salary DESC
+LIMIT 1 OFFSET 3;
+
+
+
