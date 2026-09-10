@@ -162,5 +162,96 @@ FROM employees
 ORDER BY salary DESC
 LIMIT 1 OFFSET 3;
 
+#26. Find the department with the highest average salary.
+SELECT department, AVG(salary) avg_salary
+FROM employees
+GROUP BY department
+ORDER BY avg_salary DESC
+LIMIT 1;
 
+#27. Find the department with the lowest total salary.
+SELECT department, SUM(salary) total_salary
+FROM employees
+GROUP BY department
+ORDER BY total_salary
+LIMIT 1;
 
+#28. Find the number of employees in each city, 
+# and display the cities in alphabetical order.
+SELECT city, COUNT(*) emp_count
+FROM employees
+GROUP BY city
+ORDER BY city;
+
+#29. Find the city with the highest number of employees.
+SELECT city, COUNT(*) emp_count
+FROM employees
+GROUP BY city
+ORDER BY emp_count DESC
+LIMIT 1;
+
+#30. Find all departments where the minimum salary is greater than ₹50,000.
+SELECT department, MIN(salary) min_salary
+FROM employees
+GROUP BY department
+HAVING MIN(salary) > 50000;
+
+#31. Find the department with the highest total salary, and display the 
+# department name along with its total salary.
+SELECT department, SUM(salary) total_salary
+FROM employees
+GROUP BY department
+ORDER BY SUM(salary) DESC
+LIMIT 1;
+
+#32. Find the average salary of employees in each department, but display only 
+# departments whose average salary is between ₹50,000 and ₹70,000, inclusive.
+SELECT department, AVG(salary) avg_salary
+FROM employees
+GROUP BY department
+HAVING AVG(salary) >= 50000 AND AVG(salary) <= 70000;
+
+#33. Display the city and total salary for each city, but only include cities where 
+# the total salary is greater than ₹1,00,000. Sort the result by total salary in descending order.
+SELECT city, SUM(salary) total_salary
+FROM employees
+GROUP BY city
+HAVING SUM(salary) > 100000
+ORDER BY total_salary DESC;
+
+#34. Find the department with the highest average salary among departments 
+# having at least 3 employees.
+SELECT department, AVG(salary) avg_salary
+FROM employees
+GROUP BY department
+HAVING COUNT(*) >=3
+ORDER BY avg_salary DESC
+LIMIT 1;
+
+#35. Find the second-highest salary in the employees table, considering duplicate 
+# salary values as a single salary level.
+SELECT DISTINCT salary
+FROM employees
+ORDER BY salary DESC
+LIMIT 1 OFFSET 1;
+
+#36. Find the third-highest distinct salary in the employees table.
+SELECT DISTINCT salary
+FROM employees
+ORDER BY salary DESC
+LIMIT 1 OFFSET 2;
+
+#37. Find the total number of employees and total salary for each department, 
+# but display only departments where the total salary exceeds ₹2,00,000.
+SELECT department, COUNT(employee_id) total_emp_count, SUM(salary) total_salary
+FROM employees
+GROUP BY department
+HAVING SUM(salary) > 200000;
+
+#37. Display the department, minimum salary, maximum salary, and average salary 
+# for each department. Sort the departments by their maximum salary from highest 
+# to lowest.
+SELECT department, MIN(salary) min_salary, MAX(salary) max_salary, AVG(salary) avg_salary
+FROM employees
+GROUP BY department
+ORDER BY max_salary DESC;
