@@ -383,3 +383,15 @@ WHERE e.salary >
 FROM employees
 WHERE department = e.department);
 
+#56. Find the second-highest salary in each department.
+SELECT e.department, e.salary
+FROM employees AS e
+WHERE e.salary =
+(SELECT salary
+FROM employees
+WHERE department = e.department
+ORDER BY salary DESC
+LIMIT 1 OFFSET 1);
+
+#57. Find the employees who have the lowest salary in their department.
+
