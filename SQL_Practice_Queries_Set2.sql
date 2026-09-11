@@ -342,3 +342,44 @@ SELECT department, MIN(salary) min_salary
 FROM employees
 GROUP BY department
 HAVING MIN(salary) > 55000;
+
+#51. Find the city with the highest average salary.
+SELECT city, AVG(salary) avg_salary
+FROM employees
+GROUP BY city
+ORDER BY avg_salary DESC
+LIMIT 1;
+
+#52. Find the departments where the highest salary is at least 70,000 and 
+#the department has more than 2 employees.
+SELECT department, MAX(salary) highest_salary, COUNT(employee_id) emp_count
+FROM employees
+GROUP BY department
+HAVING MAX(salary) >= 70000 AND COUNT(employee_id) > 2;
+
+#53. Find the employees whose salary is higher than the average salary of 
+# the entire company.
+SELECT *
+FROM employees
+WHERE salary > 
+(SELECT AVG(salary) avg_comp_salary
+FROM employees);
+
+#54. Find the employee(s) who earn the highest salary within their department.
+# group-wise maximum" problem, a very common SQL interview pattern.
+SELECT e.*
+FROM employees AS e
+WHERE (e.department, e.salary) IN
+(SELECT department, MAX(salary) max_salary
+FROM employees
+GROUP BY department);
+
+#55. Find the employees whose salary is higher than the average salary of 
+# their own department.
+SELECT e.*
+FROM employees AS e
+WHERE e.salary > 
+(SELECT AVG(salary)
+FROM employees
+WHERE department = e.department);
+
