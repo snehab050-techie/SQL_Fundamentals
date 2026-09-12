@@ -466,7 +466,19 @@ LIMIT 1);
 
 #64. Find the employees who earn the highest salary in their 
 # respective cities.
+SELECT e.*
+FROM employees AS e
+WHERE (e.city,e.salary) IN
+(SELECT city, MAX(salary)
+FROM employees
+GROUP BY city);
 
+#65. Find the city whose employees have the highest average salary.
+SELECT city, AVG(salary) avg_salary
+FROM employees
+GROUP BY city
+ORDER BY avg_salary DESC
+LIMIT 1;
 
 
 
