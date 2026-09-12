@@ -455,6 +455,17 @@ LIMIT 1 OFFSET 1;
 
 #63. Find the employees who earn more than the highest-paid 
 # employee in the HR department.
+SELECT e.*
+FROM employees AS e
+WHERE e.salary > 
+(SELECT salary
+FROM employees
+WHERE department = 'HR'
+ORDER BY salary DESC
+LIMIT 1);
+
+#64. Find the employees who earn the highest salary in their 
+# respective cities.
 
 
 
