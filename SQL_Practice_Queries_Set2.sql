@@ -438,4 +438,10 @@ GROUP BY department) AS e
 ORDER BY highest_difference DESC
 LIMIT 1;
 
-# Find the employee(s) with the highest salary in each city.
+#61. Find the employee(s) with the highest salary in each city.
+SELECT e.*
+FROM employees AS e
+WHERE (e.city, e.salary) IN
+(SELECT city, MAX(salary) max_salary
+FROM employees
+GROUP BY city);
