@@ -402,3 +402,40 @@ FROM employees
 WHERE department = e.department
 ORDER BY salary
 LIMIT 1);
+
+#58. Find the employees who have more experience than the average 
+# experience of their department.
+SELECT e.*
+FROM employees AS e
+WHERE e.experience
+>
+(SELECT AVG(experience) avg_exp
+FROM employees
+WHERE department = e.department
+GROUP BY department);
+
+#59. Find the department(s) where the difference between the highest 
+# salary and the lowest salary is greater than 20,000.
+SELECT e.*
+FROM
+(SELECT department, MAX(salary) max_salary, MIN(salary) min_salary
+FROM employees
+GROUP BY department) AS e
+WHERE (e.max_salary - e.min_salary) > 20000;
+
+SELECT department, MAX(salary) max_salary, MIN(salary) min_salary
+FROM employees
+GROUP BY department
+HAVING MAX(salary) - MIN(salary) > 20000;
+
+#60. Find the department with the largest difference between its highest 
+# and lowest salary.
+SELECT e.department, (e.max_salary - e.min_salary) highest_difference
+FROM(
+SELECT department, MAX(salary) max_salary, MIN(salary) min_salary
+FROM employees
+GROUP BY department) AS e
+ORDER BY highest_difference DESC
+LIMIT 1;
+
+# Find the employee(s) with the highest salary in each city.
