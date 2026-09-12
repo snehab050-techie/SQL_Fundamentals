@@ -445,3 +445,13 @@ WHERE (e.city, e.salary) IN
 (SELECT city, MAX(salary) max_salary
 FROM employees
 GROUP BY city);
+
+#62. Find the city with the second-highest average salary.
+SELECT city, AVG(salary) avg_salary
+FROM employees
+GROUP BY city
+ORDER BY avg_salary DESC
+LIMIT 1 OFFSET 1;
+
+
+
