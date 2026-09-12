@@ -453,5 +453,9 @@ GROUP BY city
 ORDER BY avg_salary DESC
 LIMIT 1 OFFSET 1;
 
+#63. Find the employees who earn more than the highest-paid 
+# employee in the HR department.
+
+
 
 
