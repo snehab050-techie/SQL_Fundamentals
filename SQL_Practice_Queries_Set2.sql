@@ -484,6 +484,7 @@ LIMIT 1;
 
 # SQL Joins - are used to combine rows from two or more tables based on a related column between them.
 # Joins Types - Inner Join, Left Join, Right Join, Full Join
+# Its not necessary to have FK relationship between two tables
 
 #1. INNER JOIN - Returns records that have matching values in both tables
 # Example : Student (stu_id , name) , Course (stu_id, crs_name)
@@ -524,7 +525,11 @@ FROM STUDENT AS s
 INNER JOIN COURSE AS c
 ON s.stu_id = c.stu_id;
 
-
+#2. LEFT Join - Returns all the reacords from the left table and the matching records from the right table
+SELECT s.*, c.crs_name
+FROM STUDENT AS s
+LEFT JOIN COURSE AS c
+ON s.stu_id = c.stu_id;
 
 
 
