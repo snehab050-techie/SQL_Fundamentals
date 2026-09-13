@@ -504,5 +504,25 @@ VALUES
 (102,"Suhas"),
 (103, "John");
 
+INSERT INTO COURSE
+VALUES
+(101, "Bio"),
+(102, "Physics"),
+(103, "Math");
+
+INSERT INTO STUDENT
+VALUES
+(104,"LORY"),
+(105,"AALYA");
+
+SELECT * FROM STUDENT;
+
+SELECT * FROM COURSE;
+
+
+
+
+
+
 
 
