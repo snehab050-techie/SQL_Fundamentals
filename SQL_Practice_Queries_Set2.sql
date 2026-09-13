@@ -480,5 +480,29 @@ GROUP BY city
 ORDER BY avg_salary DESC
 LIMIT 1;
 
+---------------------------
+
+# SQL Joins - are used to combine rows from two or more tables based on a related column between them.
+# Joins Types - Inner Join, Left Join, Right Join, Full Join
+
+#1. INNER JOIN - Returns records that have matching values in both tables
+# Example : Student (stu_id , name) , Course (stu_id, crs_name)
+
+CREATE TABLE STUDENT(
+	stu_id INT PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+CREATE TABLE COURSE(
+	stu_id INT PRIMARY KEY,
+    crs_name VARCHAR(50)
+);
+
+INSERT INTO STUDENT
+VALUES
+(101,"Sneha"),
+(102,"Suhas"),
+(103, "John");
+
 
 
