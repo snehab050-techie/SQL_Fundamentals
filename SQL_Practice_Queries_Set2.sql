@@ -519,6 +519,11 @@ SELECT * FROM STUDENT;
 
 SELECT * FROM COURSE;
 
+SELECT s.stu_id, s.name, c.crs_name
+FROM STUDENT AS s
+INNER JOIN COURSE AS c
+ON s.stu_id = c.stu_id;
+
 
 
 
