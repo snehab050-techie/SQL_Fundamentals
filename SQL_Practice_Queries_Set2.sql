@@ -531,6 +531,13 @@ FROM STUDENT AS s
 LEFT JOIN COURSE AS c
 ON s.stu_id = c.stu_id;
 
+#3. RIGHT Join - Returns all records from the right table and the matching records from the left table
+SELECT s.*, c.crs_name
+FROM STUDENT AS s
+RIGHT JOIN COURSE AS c
+ON s.stu_id = c.stu_id;
+
+
 
 
 
