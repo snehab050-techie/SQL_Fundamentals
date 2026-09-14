@@ -480,6 +480,16 @@ GROUP BY city
 ORDER BY avg_salary DESC
 LIMIT 1;
 
+#66. Find the departments where the highest salary is greater than the average salary 
+# of the entire company.
+SELECT department, MAX(salary)
+FROM employees
+GROUP BY department
+HAVING MAX(salary) > (
+SELECT AVG(salary)
+FROM employees
+);
+
 ---------------------------
 
 # SQL Joins - are used to combine rows from two or more tables based on a related column between them.
