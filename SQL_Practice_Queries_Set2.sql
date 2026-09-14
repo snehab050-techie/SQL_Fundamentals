@@ -537,6 +537,18 @@ FROM STUDENT AS s
 RIGHT JOIN COURSE AS c
 ON s.stu_id = c.stu_id;
 
+#4. FULL Join - FULL JOIN returns all records from both tables, matching rows where 
+# possible and filling in NULL values where a match does not exist.
+((SELECT s.*, c.crs_name
+FROM STUDENT AS s
+LEFT JOIN COURSE AS c
+ON s.stu_id = c.stu_id)
+UNION
+(SELECT s.*, c.crs_name
+FROM STUDENT AS s
+RIGHT JOIN COURSE AS c
+ON s.stu_id = c.stu_id));
+
 
 
 
