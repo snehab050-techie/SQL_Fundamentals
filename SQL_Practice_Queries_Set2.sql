@@ -490,6 +490,9 @@ SELECT AVG(salary)
 FROM employees
 );
 
+#67. Find the employees whose salary is the second-highest salary in their 
+# respective cities.
+
 ---------------------------
 
 # SQL Joins - are used to combine rows from two or more tables based on a related column between them.
