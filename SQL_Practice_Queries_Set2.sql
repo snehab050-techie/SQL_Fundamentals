@@ -550,8 +550,8 @@ FROM STUDENT AS s
 RIGHT JOIN COURSE AS c
 ON s.stu_id = c.stu_id;
 
-#4. FULL Join - FULL JOIN returns all records from both tables, matching rows where 
-# possible and filling in NULL values where a match does not exist.
+#4. FULL Join - FULL JOIN returns all records from both tables, including the matching rows where 
+# possible and filling in NULL values where data does not exist.
 ((SELECT s.*, c.crs_name
 FROM STUDENT AS s
 LEFT JOIN COURSE AS c
@@ -562,9 +562,37 @@ FROM STUDENT AS s
 RIGHT JOIN COURSE AS c
 ON s.stu_id = c.stu_id));
 
+# More Joins - Left Exclusive Join, Right exclusive join, Full Exclusive Join
 
+#1. Left exclusive join - To fetch only the left table records, excluding the records from right
+# table & the matching records from both tables
+SELECT s.*
+FROM student AS s
+LEFT JOIN course AS c
+ON s.stu_id = c.stu_id
+WHERE c.stu_id IS NULL;
 
+#2. Right Exclusive Join - To fetch only the records that belong to right table, excluding
+# the records from the left tabe & the overlapping records
+SELECT c.*
+FROM student AS s
+RIGHT JOIN course AS c
+ON s.stu_id = c.stu_id
+WHERE s.stu_id IS NULL;
 
+#3. Full exclusive join - Returns all the records from left and right table except the matching records
+# from both the tabales
+SELECT s.*, c.*
+FROM student AS s
+LEFT JOIN course AS c
+ON s.stu_id = c.stu_id
+WHERE c.stu_id IS NULL
+UNION
+SELECT s.*,c.*
+FROM student AS s
+RIGHT JOIN course AS c
+ON s.stu_id =c.stu_id
+WHERE s.stu_id IS NULL;
 
-
-
+SELECT * FROM STUDENT;
+SELECT * FROM COURSE;
