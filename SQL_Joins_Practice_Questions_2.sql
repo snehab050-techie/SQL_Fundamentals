@@ -118,3 +118,35 @@ FROM employees
 WHERE name = 'Rahul');
 
 #solving same query using self join - as all required details are in same employees table
+select * from employees;
+SELECT e2.name
+FROM employees AS e1
+JOIN employees AS e2
+ON e1.department_id = e2.department_id
+WHERE e1.name = 'Rahul';
+
+#Find employees who work in the same department as Rahul, 
+# excluding Rahul.
+SELECT e2.name
+FROM employees AS e1
+JOIN employees AS e2
+ON e1.department_id = e2.department_id
+WHERE e1.name = 'Rahul'
+AND e2.name <> 'Rahul';
+
+#LEFT join
+#5. Write a query to display every employee's name and their 
+#department name. Employees should be displayed even if they don't 
+#belong to any department.
+SELECT e.name, d.department_name
+FROM employees AS e
+LEFT JOIN departments AS d
+ON e.department_id = d.department_id;
+
+#6. Find employees who do not have a department assigned to them
+# OR Write a SQL query to find all employees who do not have a matching department.
+SELECT e.name
+FROM employees AS e
+LEFT JOIN departments AS d
+ON e.department_id = d.department_id
+WHERE d.department_name IS NULL;
