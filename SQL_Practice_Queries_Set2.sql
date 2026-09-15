@@ -594,5 +594,26 @@ RIGHT JOIN course AS c
 ON s.stu_id =c.stu_id
 WHERE s.stu_id IS NULL;
 
-SELECT * FROM STUDENT;
-SELECT * FROM COURSE;
+# Self Join - A regular join where a table is joined itself
+# keyword - JOIN
+#example - Employee and Manager relationships
+CREATE TABLE employee
+(
+	id INT PRIMARY KEY,
+    name VARCHAR(50),
+    manager_id INT
+);
+
+INSERT INTO employee
+VALUES
+(101,"adam",103),
+(102,"bob",101),
+(103,"casey",NULL),
+(104,"john",103);
+
+SELECT * FROM employee;
+
+SELECT e1.name as managers, e2.name as emp_name
+FROM employee AS e1
+JOIN employee AS e2
+ON e1.id = e2.manager_id;
