@@ -80,3 +80,41 @@ SELECT e.name, d.department_name
 FROM employees AS e
 INNER JOIN departments AS d
 ON e.department_id = d.department_id;
+
+#2. Write a query to display the employee name, salary, and 
+# department name for employees who belong to the IT department.
+SELECT e.name, e.salary, d.department_name
+FROM employees AS e
+INNER JOIN departments AS d
+ON e.department_id = d.department_id
+WHERE d.department_name = 'IT';
+
+#3. Write a query to display the employee name and their manager's 
+# name for every employee.
+SELECT e.name, d.manager
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id;
+
+#4. Write a query to display the names of employees who work 
+# in the same department as Rahul.
+
+# no need of joins here
+SELECT e.name
+FROM employees AS e
+WHERE (e.department_id) =
+(SELECT d.department_id
+FROM employees AS e
+INNER JOIN departments AS d
+ON e.department_id = d.department_id
+WHERE e.name = 'Rahul');
+
+# we can also use subquery - same result
+SELECT name
+FROM employees
+WHERE department_id =
+(SELECT department_id
+FROM employees
+WHERE name = 'Rahul');
+
+#solving same query using self join - as all required details are in same employees table
