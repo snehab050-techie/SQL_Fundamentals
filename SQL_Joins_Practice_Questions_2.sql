@@ -150,3 +150,9 @@ FROM employees AS e
 LEFT JOIN departments AS d
 ON e.department_id = d.department_id
 WHERE d.department_name IS NULL;
+
+use practice_joins;
+INSERT INTO departments
+VALUES(50,'Marketing','Rohan');
+
+#7. Write a query to find departments that currently have NO employees.
