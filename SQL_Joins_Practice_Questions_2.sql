@@ -221,3 +221,23 @@ HAVING COUNT(e.employee_id) > 1;
 #RIGHT JOIN returns all records from the right table and the matching records from the left table. If there is no match, the left-side columns will contain NULL.
 
 #FULL OUTER JOIN returns all records from both tables. Matching records are combined, while unmatched records from either side have NULL values for the columns of the other side.
+
+#14. Write a query that displays ALL employees and ALL departments, including 
+# unmatched employees and unmatched departments.
+SELECT e.name, d.department_name
+FROM employees AS e
+LEFT JOIN departments AS d
+ON e.department_id = d.department_id
+UNION
+SELECT e.name, d.department_name
+FROM employees AS e
+RIGHT JOIN departments AS d
+ON e.department_id = d.department_id;
+
+#15. Write a query to display: Each department name and the average salary of 
+# employees in that department.
+SELECT d.department_name, ROUND(AVG(e.salary)) avg_salary
+FROM employees AS e
+INNER JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY d.department_name;
