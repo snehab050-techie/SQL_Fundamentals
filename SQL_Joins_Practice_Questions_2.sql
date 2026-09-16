@@ -206,5 +206,18 @@ RIGHT JOIN departments As d
 ON e.department_id = d.department_id
 GROUP BY d.department_name;
 
+#13. Find departments that have more than 1 employee.
+SELECT d.department_name
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY d.department_name
+HAVING COUNT(e.employee_id) > 1;
 
-SELECT * FROM employees;
+#INNER JOIN returns only the records that have a match in both tables.
+
+#LEFT JOIN returns all records from the left table and the matching records from the right table. If there is no match, the right-side columns will contain NULL.
+
+#RIGHT JOIN returns all records from the right table and the matching records from the left table. If there is no match, the left-side columns will contain NULL.
+
+#FULL OUTER JOIN returns all records from both tables. Matching records are combined, while unmatched records from either side have NULL values for the columns of the other side.
