@@ -156,3 +156,55 @@ INSERT INTO departments
 VALUES(50,'Marketing','Rohan');
 
 #7. Write a query to find departments that currently have NO employees.
+SELECT d.department_name
+FROM departments AS d
+LEFT JOIN employees AS e
+ON d.department_id = e.department_id
+WHERE e.employee_id IS NULL;
+
+#8. Display ALL employees, but show the department name only when the department is IT.
+SELECT e.name,d.department_name
+FROM employees AS e
+LEFT JOIN departments AS d
+ON e.department_id = d.department_id
+AND d.department_name = 'IT';
+
+#9. Display every employee's name, but show a department name only if 
+# the employee belongs to HR.
+SELECT e.name, d.department_name
+FROM employees AS e
+LEFT JOIN departments AS d
+ON e.department_id = d.department_id
+AND d.department_name = 'HR';
+
+#Right Join - Returns all records from right table and the matching records 
+# from the left table
+
+# Right Join can be replaced with left join and vice versa
+# If RIGHT JOIN confuses you, flip the tables and use LEFT JOIN. Same idea, just reversed.
+
+#10. Write a query to display every department and the employees working in that 
+#department, including departments that currently have no employees.
+SELECT d.department_name, e.name
+FROM employees AS e
+RIGHT JOIN departments AS d
+ON e.department_id = d.department_id;
+
+#11. Find all departments that have at least one employee earning more than ₹60,000.
+SELECT DISTINCT d.department_name
+FROM employees AS e
+RIGHT JOIN departments AS d
+ON e.department_id = d.department_id
+WHERE e.name IS NOT NULL
+AND e.salary > 60000;
+
+#12. Find the department name and the number of employees in each department. 
+# Include departments that currently have no employees.
+SELECT d.department_name, COUNT(employee_id) emp_count
+FROM employees AS e
+RIGHT JOIN departments As d
+ON e.department_id = d.department_id
+GROUP BY d.department_name;
+
+
+SELECT * FROM employees;
