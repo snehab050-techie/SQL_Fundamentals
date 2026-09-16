@@ -241,3 +241,42 @@ FROM employees AS e
 INNER JOIN departments AS d
 ON e.department_id = d.department_id
 GROUP BY d.department_name;
+
+#16. Find the departments whose average employee salary is greater than 60,000.
+SELECT d.department_name, AVG(e.salary) avg_salary
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY d.department_name
+HAVING AVG(e.salary) > 60000;
+
+#17. Display each department name and the number of employees working in that 
+# department. Include departments that currently have ZERO employees.
+SELECT d.department_name, COUNT(employee_id)
+FROM employees AS e
+RIGHT JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY d.department_name;
+
+#18. Departments that have at least 2 employees AND whose average salary 
+# is greater than 55,000.
+SELECT d.department_name, COUNT(e.employee_id) emp_count, AVG(e.salary) avg_salary
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY d.department_name
+HAVING COUNT(e.employee_id) >= 2
+AND AVG(e.salary) > 55000;
+
+#19. Find the highest-paid employee in each department and display the 
+# department name, employee name, and salary.
+SELECT d.department_name, e.name, e.salary
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+WHERE (d.department_name, e.salary) IN
+(SELECT d.department_name, MAX(e.salary) max_salary
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY d.department_name);
