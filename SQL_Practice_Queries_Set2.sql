@@ -625,3 +625,12 @@ FROM student AS s
 RIGHT JOIN course AS c
 ON s.stu_id =c.stu_id
 WHERE s.stu_id IS NULL;
+
+#UNION - is used to combine result-set of two or more SELECT statements
+#It gives unique results (without duplicates)
+
+SELECT name
+FROM employees
+UNION
+SELECT department_name
+FROM departments;
