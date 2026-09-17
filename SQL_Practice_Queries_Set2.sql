@@ -634,3 +634,10 @@ FROM employees
 UNION
 SELECT department_name
 FROM departments;
+
+#UNION ALL - returns duplicate records
+SELECT name
+FROM employees
+UNION ALL
+SELECT name
+FROM employees;
