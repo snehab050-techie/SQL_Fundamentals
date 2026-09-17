@@ -291,3 +291,6 @@ WHERE e1.salary >
 (SELECT AVG(e2.salary) avg_sal
 FROM employees AS e2
 WHERE e2.department_id = e1.department_id);
+
+#21. Find the department(s) where the highest-paid employee 
+# earns more than 70,000.
