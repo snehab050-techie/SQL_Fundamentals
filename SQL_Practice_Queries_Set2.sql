@@ -641,3 +641,82 @@ FROM employees
 UNION ALL
 SELECT name
 FROM employees;
+
+#SQL Subqueries - Queries within another SQL query - involves 2 select statments
+# AKA - Inner query, Sub query, Nested Queries
+
+USE practice_joins;
+
+CREATE TABLE student(
+	rollno INT PRIMARY KEY,
+    name VARCHAR(50),
+    marks INT
+);
+
+INSERT INTO student
+VALUES
+(101, 'Sneha',78),
+(102,'Casey',93),
+(103,'Lucky',85),
+(104,'Suhas',96),
+(105,'Adam',92),
+(106,'John',82);
+
+SELECT *
+FROM student;
+
+#1. Find the names of all students who scored more than class average
+SELECT name
+FROM student
+WHERE marks >
+	(SELECT AVG(marks)
+	FROM student);
+
+#2. Find the names of all students with evem roll numbers
+SELECT name,rollno
+FROM student
+WHERE rollno % 2 =0;
+
+SELECT name, rollno
+FROM student
+WHERE rollno IN 
+	(SELECT rollno
+	FROM student
+	WHERE rollno % 2 = 0);
+
+#3. Find the max marks from the students of Delhi
+
+# we don' have columns city , so adding column city with values to student table
+ALTER TABLE student
+ADD COLUMN city VARCHAR(50);
+
+describe student;
+
+UPDATE student
+SET city = 'Pune'
+WHERE rollno = 101;
+UPDATE student
+SET city = 'Mumbai'
+WHERE rollno = 102;
+UPDATE student
+SET city = 'Mumbai'
+WHERE rollno = 103;
+UPDATE student
+SET city = 'Delhi'
+WHERE rollno = 104;
+UPDATE student
+SET city = 'Delhi'
+WHERE rollno = 105;
+UPDATE student
+SET city = 'Delhi'
+WHERE rollno = 106;
+
+SELECT * FROM student;
+
+#Find the max marks from the students of Delhi
+SELECT MAX(s.marks) max_marks, s.city
+FROM 
+(SELECT city,marks
+FROM student
+WHERE city = 'Delhi') AS s;
+

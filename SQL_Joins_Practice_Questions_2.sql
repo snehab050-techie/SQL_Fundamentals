@@ -294,3 +294,9 @@ WHERE e2.department_id = e1.department_id);
 
 #21. Find the department(s) where the highest-paid employee 
 # earns more than 70,000.
+SELECT d.department_name
+FROM employees AS e
+INNER JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY d.department_name
+HAVING MAX(salary) > 70000;
