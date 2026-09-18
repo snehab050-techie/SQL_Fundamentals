@@ -322,3 +322,19 @@ GROUP BY e.department_id
 HAVING AVG(e.salary) > 
 (SELECT AVG(salary)
 FROM employees);
+
+#24. Find the employee(s) who earn more than the average salary of their department 
+# AND display their department name, employee name, salary, and department average 
+#salary
+SELECT e1.name, e1.salary, d.department_name, ((SELECT AVG(e2.salary) avg_sal
+FROM employees AS e2
+WHERE e1.department_id = e2.department_id)) AS department_avg
+FROM employees AS e1
+JOIN departments AS d
+ON e1.department_id = d.department_id
+WHERE e1.salary >
+(SELECT AVG(e2.salary) avg_sal
+FROM employees AS e2
+WHERE e1.department_id = e2.department_id);
+
+
