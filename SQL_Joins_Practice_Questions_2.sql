@@ -337,4 +337,6 @@ WHERE e1.salary >
 FROM employees AS e2
 WHERE e1.department_id = e2.department_id);
 
+#25. Find employees whose salary is greater than their department's average salary, and display: emp name, dept name, salary, dept avg sal
+
 
