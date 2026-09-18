@@ -340,3 +340,5 @@ WHERE e1.department_id = e2.department_id);
 #25. Find employees whose salary is greater than their department's average salary, and display: emp name, dept name, salary, dept avg sal
 
 #26. Find the departments that have at least 2 employees. Display: Department nam, Employee count
+
+#27. Find the employee(s) who earn the highest salary in the entire company. Display: Employee name Department name Salary
