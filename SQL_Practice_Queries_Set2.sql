@@ -738,4 +738,3 @@ FROM view1
 WHERE marks>85;
 
 DROP VIEW view1;
-

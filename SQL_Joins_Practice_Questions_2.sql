@@ -300,3 +300,14 @@ INNER JOIN departments AS d
 ON e.department_id = d.department_id
 GROUP BY d.department_name
 HAVING MAX(salary) > 70000;
+
+#22. Find the department name and the name of the highest-paid 
+# employee in each department.
+SELECT d.department_name department, e1.name employee, e1.salary
+FROM employees AS e1
+JOIN departments AS d
+ON e1.department_id =d.department_id
+WHERE (e1.department_id, e1.salary) IN
+	(SELECT e.department_id department,MAX(salary) max_salary
+	FROM employees AS e
+	GROUP BY e.department_id);
