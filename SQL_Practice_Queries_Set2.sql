@@ -723,3 +723,19 @@ WHERE city = 'Delhi') AS s;
 #Usage of Subqueries in SELECT statements - less used
 SELECT (SELECT MAX(marks) FROM student), name
 FROM student;
+
+# Views in Mysql
+# View in SQL is a virtual table created using result-set of an SQL SELECT statment
+# These are not real tables - but a virtual table
+
+CREATE VIEW view1
+AS (SELECT rollno, name, marks FROM student);
+
+SELECT * FROM view1;
+
+SELECT name
+FROM view1
+WHERE marks>85;
+
+DROP VIEW view1;
+
