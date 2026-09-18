@@ -311,3 +311,14 @@ WHERE (e1.department_id, e1.salary) IN
 	(SELECT e.department_id department,MAX(salary) max_salary
 	FROM employees AS e
 	GROUP BY e.department_id);
+    
+#23. Find the department(s) whose average salary is higher than the overall 
+# average salary of all employees.
+SELECT d.department_name
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY e.department_id
+HAVING AVG(e.salary) > 
+(SELECT AVG(salary)
+FROM employees);
