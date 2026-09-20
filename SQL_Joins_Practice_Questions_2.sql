@@ -344,3 +344,9 @@ WHERE e1.department_id = e2.department_id);
 #27. Find the employee(s) who earn the highest salary in the entire company. Display: Employee name Department name Salary
 
 #28. Find the departments where: The department has at least 2 employee AND the highest salary in that department is greater than 70,000 AND display the department name, employee count, and highest salary
+
+#29. Find the employees who work in the IT or HR department and display their name, department name, and salary.
+
+#30. Find the total salary paid by each department and display the department name and total salary.
+
+#31. Find the employees who work in the IT or HR department and display their name, department name, and salary.
