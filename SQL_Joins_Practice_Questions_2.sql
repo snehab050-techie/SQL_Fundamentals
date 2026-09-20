@@ -352,3 +352,5 @@ WHERE e1.department_id = e2.department_id);
 #31. Find the employees who work in the IT or HR department and display their name, department name, and salary.
 
 #32. Find the total salary paid by each department and display the department name and total salary.
+
+#33. Find the departments where the total salary of all employees is greater than 120,000 and display the department name and total salary.
