@@ -361,4 +361,6 @@ WHERE e1.department_id = e2.department_id);
 
 # 35. Write a query to display the employee name, department name, and salary for all employees who belong to a department.
 
-# 36. Write a query to display all employees along with their department names, including employees who are not assigned to any department.
+# 36. Write a query to display all employees along with 
+
+# 37. Write a query to find all departments that currently have no employees assigned to them.
