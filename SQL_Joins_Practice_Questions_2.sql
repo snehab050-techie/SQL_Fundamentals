@@ -364,3 +364,5 @@ WHERE e1.department_id = e2.department_id);
 # 36. Write a query to display all employees along with 
 
 # 37. Write a query to find all departments that currently have no employees assigned to them.
+
+# 38. Write a query to display each employee’s name along with their manager’s name, assuming the employees table has a manager_id column that refers to another employee’s employee_id.
