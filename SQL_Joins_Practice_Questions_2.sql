@@ -356,3 +356,7 @@ WHERE e1.department_id = e2.department_id);
 #33. Find the departments where the total salary of all employees is greater than 120,000 and display the department name and total salary.
 
 #34. Find the employees who earn more than the highest-paid employee in the HR department and display their name, department name, and salary.
+
+#------------------------ top 4 questions
+
+# 35. Write a query to display the employee name, department name, and salary for all employees who belong to a department.
