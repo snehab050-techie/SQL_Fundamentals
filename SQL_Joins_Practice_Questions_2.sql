@@ -337,11 +337,40 @@ WHERE e1.salary >
 FROM employees AS e2
 WHERE e1.department_id = e2.department_id);
 
-#25. Find employees whose salary is greater than their department's average salary, and display: emp name, dept name, salary, dept avg sal
+#--- verify SQL query till Q25
+#25. Find employees whose salary is greater than their department's 
+# average salary, and display: emp name, dept name, salary, dept avg sal
+SELECT e1.name, e1.salary, d.department_name, 
+(SELECT AVG(salary) 
+FROM employees AS e2
+WHERE  e2.department_id = e1.department_id) dept_avg_sal
+FROM employees AS e1
+JOIN departments AS d
+ON e1.department_id = d.department_id
+WHERE e1.salary >
+(SELECT AVG(e.salary) avg_salary
+FROM employees AS e
+WHERE e.department_id = e1.department_id);
 
-#26. Find the departments that have at least 2 employees. Display: Department nam, Employee count
+#26. Find the departments that have at least 2 employees. 
+# Display: Department name, Employee count
+SELECT d.department_name, COUNT(e.employee_id) AS emp_count
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY e.department_id
+HAVING COUNT(e.employee_id) >= 2;
 
-#27. Find the employee(s) who earn the highest salary in the entire company. Display: Employee name Department name Salary
+#27. Find the employee(s) who earn the highest salary in the entire 
+# company. Display: Employee name Department name Salary
+SELECT e1.name, d1.department_name, e1.salary
+FROM employees AS e1
+LEFT JOIN departments AS d1
+ON e1.department_id = d1.department_id
+WHERE e1.salary =
+(SELECT MAX(e.salary) highest_salary
+FROM employees AS e);
+
 
 #------to verify solutions from here
 #28. Find the departments where: The department has at least 2 employee 
