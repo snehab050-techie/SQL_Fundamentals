@@ -355,7 +355,19 @@ WHERE e1.department_id = e2.department_id);
 
 #33. Find the departments where the total salary of all employees is greater than 120,000 and display the department name and total salary.
 
-#34. Find the employees who earn more than the highest-paid employee in the HR department and display their name, department name, and salary.
+#34. Find the employees who earn more than the highest-paid 
+# employee in the HR department and display their name, department 
+# name, and salary.
+SELECT e1.name, e1.salary, d1.department_name
+FROM employees AS e1
+LEFT JOIN departments AS d1
+ON e1.department_id = d1.department_id
+WHERE e1.salary > 
+(SELECT MAX(e.salary) max_salary_hr
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+WHERE d.department_name = 'HR');
 
 #------------------------ top 4 questions
 
