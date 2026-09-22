@@ -343,15 +343,48 @@ WHERE e1.department_id = e2.department_id);
 
 #27. Find the employee(s) who earn the highest salary in the entire company. Display: Employee name Department name Salary
 
-#28. Find the departments where: The department has at least 2 employee AND the highest salary in that department is greater than 70,000 AND display the department name, employee count, and highest salary
+#------to verify solutions from here
+#28. Find the departments where: The department has at least 2 employee 
+#AND the highest salary in that department is greater than 70,000 
+#AND display the department name, employee count, and highest salary
+SELECT d.department_name, COUNT(e.employee_id) employee_count, MAX(e.salary) max_salary
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY e.department_id
+HAVING COUNT(e.employee_id) >=2
+AND MAX(e.salary) > 70000;
 
 #29. Find the employees who work in the IT or HR department and display their name, department name, and salary.
+SELECT e.name, d.department_name, e.salary
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+WHERE d.department_name IN ('IT','HR');
 
-#30. Find the total salary paid by each department and display the department name and total salary.
+#30. Find the total salary paid by each department and display 
+# the department name and total salary.
+SELECT d.department_name, SUM(e.salary) total_salary
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY d.department_name;
 
-#31. Find the employees who work in the IT or HR department and display their name, department name, and salary.
+#31. Find the employees who work in the IT or HR department and 
+# display their name, department name, and salary.
+SELECT e.name, d.department_name, e.salary
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+WHERE d.department_name IN ('IT','HR');
 
-#32. Find the total salary paid by each department and display the department name and total salary.
+#32. Find the total salary paid by each department and display the 
+# department name and total salary.
+SELECT d.department_name, SUM(e.salary) total_salary
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY d.department_name;
 
 #33. Find the departments where the total salary of all employees 
 # is greater than 120,000 and display the department name and total 
