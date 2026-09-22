@@ -359,10 +359,56 @@ WHERE e1.department_id = e2.department_id);
 
 #------------------------ top 4 questions
 
+SELECT * FROM employees;
+
+SELECT * FROM departments;
+
 # 35. Write a query to display the employee name, department name, and salary for all employees who belong to a department.
+SELECT e.name, d.department_name, e.salary
+FROM employees AS e
+INNER JOIN departments AS d
+ON e.department_id = d.department_id;
 
 # 36. Write a query to display all employees along with their department names, including employees who are not assigned to any department.
+SELECT e.name, d.department_name
+FROM employees AS e
+LEFT JOIN departments AS d
+ON e.department_id = d.department_id;
 
 # 37. Write a query to find all departments that currently have no employees assigned to them.
+SELECT d.department_name
+FROM employees AS e
+RIGHT JOIN departments AS d
+ON e.department_id = d.department_id
+WHERE e.employee_id IS NULL;
 
 # 38. Write a query to display each employee’s name along with their manager’s name, assuming the employees table has a manager_id column that refers to another employee’s employee_id.
+
+
+#---added manager_id column to work on Q38
+SELECT * FROM employees;
+
+ALTER TABLE employees
+ADD COLUMN manager_id INT;
+
+UPDATE employees
+SET manager_id = 104
+WHERE employee_id = 101;
+
+UPDATE employees
+SET manager_id = 104
+WHERE employee_id = 102;
+
+UPDATE employees
+SET manager_id = 104
+WHERE employee_id = 106;
+
+UPDATE employees
+SET manager_id = 104
+WHERE employee_id = 105;
+
+UPDATE employees
+SET manager_id = 106
+WHERE employee_id = 103;
+
+
