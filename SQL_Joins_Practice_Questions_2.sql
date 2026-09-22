@@ -360,12 +360,14 @@ SELECT d.department_name, SUM(e.salary) total_salary
 FROM employees AS e
 JOIN departments AS d
 ON e.department_id = d.department_id
-GROUP BY e.department_id
+GROUP BY e.department_id, d.department_name
 HAVING SUM(e.salary) > 120000;
 
 #34. Find the employees who earn more than the highest-paid 
 # employee in the HR department and display their name, department 
 # name, and salary.
+
+# would be cleaner with INNER JOIN as it eliminates employees not assigned to any department
 SELECT e1.name, e1.salary, d1.department_name
 FROM employees AS e1
 LEFT JOIN departments AS d1
