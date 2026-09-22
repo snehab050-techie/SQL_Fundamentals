@@ -383,9 +383,12 @@ ON e.department_id = d.department_id
 WHERE e.employee_id IS NULL;
 
 # 38. Write a query to display each employee’s name along with their manager’s name, assuming the employees table has a manager_id column that refers to another employee’s employee_id.
+SELECT e.name employee, m.name manager
+FROM employees AS e
+JOIN employees AS m
+ON e.manager_id = m.employee_id;
 
-
-#---added manager_id column to work on Q38
+#---added manager_id column to employee table to work on Q38
 SELECT * FROM employees;
 
 ALTER TABLE employees
