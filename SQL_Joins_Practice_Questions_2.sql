@@ -498,3 +498,5 @@ WHERE employee_id = 103;
 #----------more joins queries
 
 #39. Find employees who do not belong to any department and display their employee name and salary.
+
+#40. Find the department with the highest total salary and display the department name and total salary.
