@@ -337,7 +337,6 @@ WHERE e1.salary >
 FROM employees AS e2
 WHERE e1.department_id = e2.department_id);
 
-#--- verify SQL query till Q25
 #25. Find employees whose salary is greater than their department's 
 # average salary, and display: emp name, dept name, salary, dept avg sal
 SELECT e1.name, e1.salary, d.department_name, 
@@ -371,8 +370,6 @@ WHERE e1.salary =
 (SELECT MAX(e.salary) highest_salary
 FROM employees AS e);
 
-
-#------to verify solutions from here
 #28. Find the departments where: The department has at least 2 employee 
 #AND the highest salary in that department is greater than 70,000 
 #AND display the department name, employee count, and highest salary
@@ -498,4 +495,6 @@ UPDATE employees
 SET manager_id = 106
 WHERE employee_id = 103;
 
+#----------more joins queries
 
+#39. Find employees who do not belong to any department and display their employee name and salary.
