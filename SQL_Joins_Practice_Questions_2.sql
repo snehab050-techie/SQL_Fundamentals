@@ -502,3 +502,5 @@ WHERE employee_id = 103;
 #40. Find the department with the highest total salary and display the department name and total salary.
 
 #41. Find employees who have the same department as their manager and display the employee name, manager name, and department name.
+
+#42. Find all departments along with the number of employees working in each department, including departments that have no employees.
