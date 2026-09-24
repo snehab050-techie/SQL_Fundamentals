@@ -164,3 +164,48 @@ That's transitive dependency.
 
 Fix : Split tables
 
+Important Questions
+--------------------
+
+1. What is normalization?
+
+	Normalization is the process of organizing data into tables to reduce redundancy and avoid data anomalies.
+
+2. Why do we use normalization?
+
+	To reduce data redundancy, improve data consistency, and avoid insert, update, and delete anomalies.
+
+3. What is 1NF?
+
+	1NF requires each column to contain atomic values, meaning each cell should contain a single value.
+
+4. What is 2NF?
+
+	A table is in 2NF when it is in 1NF and has no partial dependency on a composite key.
+
+5. What is 3NF?
+
+	A table is in 3NF when it is in 2NF and has no transitive dependency.
+
+6. What is partial dependency?
+
+	Partial dependency occurs when a non-key attribute depends on only part of a composite primary key.
+
+7. What is transitive dependency?
+
+	Transitive dependency occurs when a non-key attribute depends on another non-key attribute instead of directly depending on the primary key.
+
+8. Can a table with a single-column primary key have partial dependency?
+
+	No. Partial dependency requires a composite key, because the dependency must be on only part of the key.
+
+9. What is the difference between 2NF and 3NF?
+
+	2NF removes partial dependency, while 3NF removes transitive dependency.
+
+10. What are insertion, update, and deletion anomalies?
+
+	Insertion anomaly -> difficulty inserting data because unrelated data is required.
+	Update anomaly -> same information exists in multiple places and must be updated everywhere.
+	Deletion anomaly -> deleting one piece of information accidentally removes another useful piece of information.
+
