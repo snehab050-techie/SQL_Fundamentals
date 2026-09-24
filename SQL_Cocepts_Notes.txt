@@ -13,9 +13,154 @@ Normalization -> improve data consistency
 
 That's the basic idea.
 
+Why do we need Normalization?
+--------------------------------
+
+There are three famous problems normalization helps avoid.
+
+1. Update anomaly
+
+Suppose John changes his phone:
+
+9999 -> 7777
+
+If his information is stored in 10 employee rows, we have to update all 10.
+
+If we update only 9 and forget 1:
+
+John -> 7777
+John -> 9999 wrong
+
+Now our database contains inconsistent information.
+
+2. 2. Insert anomaly
+
+Suppose we want to add a new department:
+
+Finance
+
+But there are currently no employees in Finance.
+
+If our table requires an employee row to store department information, we can't easily store the department independently.
+
+That's an insert anomaly.
+
+3. Delete anomaly
+
+Suppose Amit is the only employee in Finance.
+
+If we delete Amit:
+
+DELETE FROM employees
+WHERE employee_id = 103;
+
+we might accidentally lose the only information we had about the Finance department.
+
+That's a delete anomaly.
+
+
 So what does normalization do?
 ------------------------------
 
 It says:
 
 "Instead of putting everything into one giant table, let's organize related information into appropriate tables."
+
+1NF = First Normal Form
+--------------------------
+
+Let's start with a bad table.
+
+employee_id	name	skills
+101		Rahul	Java, SQL, Spring
+102		Priya	Java, Python
+
+The skills column contains multiple values.
+
+That's a problem.
+
+Instead:
+
+employee_id	name	skill
+101		Rahul	Java
+101		Rahul	SQL
+101		Rahul	Spring
+102		Priya	Java
+102		Priya	Python
+
+Now each cell contains one value.
+
+That's the basic idea of 1NF.
+
+1NF means each column should contain atomic/single values, not multiple values in one cell.
+
+Polished answer:
+
+1NF requires each column to contain atomic values, meaning each cell should contain a single value rather than multiple or repeating values.
+
+2NF = Second Normal From
+-------------------------
+
+2NF = 1NF + No pratial dependency
+
+2NF mainly matters when you have a composite key.
+
+What is Partial Dependency?
+
+Very simply:
+
+A non-key column depends on only part of a composite key, instead of the whole composite key.
+
+In our example:
+
+Primary Key = employee_id + project_id
+
+But:
+
+employee_name -> depends only on employee_id
+
+and:
+
+project_name -> depends only on project_id
+
+That's partial dependency.
+
+How do we fix it?
+
+Separate the tables.
+
+Note: 
+
+If a table has a single-column primary key, partial dependency cannot happen.
+
+Why?
+
+Because there is nothing to have a "partial" dependency on.
+
+For example:
+
+employee_id
+
+is the only primary-key column.
+
+So 2NF is mainly relevant when the table has a composite key.
+
+3NF - Third Normal Form
+--------------------------
+
+3NF = 2NF + no transitive dependency
+
+What is Transitive Dependency?
+
+Very simply:
+
+A non-key column depends on another non-key column instead of directly depending on the primary key.
+
+Here:
+
+employee_id -> department_id -> department_name
+
+That's transitive dependency.
+
+Fix : Split tables
+
