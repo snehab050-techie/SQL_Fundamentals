@@ -497,10 +497,47 @@ WHERE employee_id = 103;
 
 #----------more joins queries
 
-#39. Find employees who do not belong to any department and display their employee name and salary.
+#39. Find employees who do not belong to any department 
+# and display their employee name and salary.
+SELECT e.name, e.salary
+FROM employees AS e
+WHERE e.department_id IS NULL;
 
-#40. Find the department with the highest total salary and display the department name and total salary.
+#40. Find the department with the highest total salary and 
+# display the department name and total salary.
+SELECT d.department_name, SUM(e.salary) total_salary
+FROM employees AS e
+INNER JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY e.department_id
+ORDER BY total_salary DESC
+LIMIT 1;
 
-#41. Find employees who have the same department as their manager and display the employee name, manager name, and department name.
+#41. Find employees who have the same department as their manager 
+# and display the employee name, manager name, and department name.
+SELECT e.name emp_name,e.department_id emp_dept, m.name manager_name, m.department_id manager_dept
+FROM employees AS e
+JOIN employees AS m
+ON e.manager_id = m.employee_id
+WHERE e.department_id = m.department_id;
 
-#42. Find all departments along with the number of employees working in each department, including departments that have no employees.
+# Final version - answer
+SELECT e.name emp_name, m.name manager_name, d.department_name
+FROM employees AS e
+JOIN employees AS m
+JOIN departments AS d
+ON e.manager_id = m.employee_id
+AND e.department_id = d.department_id
+WHERE e.department_id = m.department_id;
+
+#SELECT * FROM employees;
+#INSERT INTO employees
+#VALUES(107, "Alis",78000,"Nagpur",30,104);
+
+#42. Find all departments along with the number of employees working 
+# in each department, including departments that have no employees.
+SELECT e.department_id,d.department_name, COUNT(e.employee_id) emp_count
+FROM employees AS e
+RIGHT JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY e.department_id,d.department_name;
