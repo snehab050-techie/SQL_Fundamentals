@@ -209,3 +209,57 @@ Important Questions
 	Update anomaly -> same information exists in multiple places and must be updated everywhere.
 	Deletion anomaly -> deleting one piece of information accidentally removes another useful piece of information.
 
+Index in SQL
+---------------
+
+Suppose we run:
+
+SELECT *
+FROM employees
+WHERE employee_id = 98765;
+
+The database needs to find employee 98765.
+
+Without an index
+
+Imagine there are 1 million employees.
+
+The database may have to look through:every emp id - from 101 to 98765
+
+That's potentially a lot of searching.
+
+This is similar to opening a 1000-page book and looking for the word "Index".
+
+We wouldn't read every page from beginning to end.
+
+We would use the book's index.
+
+That's essentially the idea behind a database index.
+
+------------
+
+So,
+
+An index is a data structure created on one or more columns of a table to make data retrieval faster.
+
+For example:
+
+CREATE INDEX idx_employee_id
+ON employees(employee_id);
+
+Now we've created an index on:
+
+employee_id
+
+So when we run:
+
+SELECT *
+FROM employees
+WHERE employee_id = 98765;
+
+the database can use the index to locate the required row much more efficiently.
+
+Simple definition:
+
+An index is a database object/data structure that helps the database find rows faster without scanning the entire table.
+
