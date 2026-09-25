@@ -541,3 +541,41 @@ FROM employees AS e
 RIGHT JOIN departments AS d
 ON e.department_id = d.department_id
 GROUP BY e.department_id,d.department_name;
+
+#43. Find employees who are working in the same department as at 
+# least one other employee, and display the employee name, department
+# name, and salary.
+SELECT 	DISTINCT d.department_name, ce.name ce, ce.salary, oe.name oe,oe.salary
+FROM employees AS ce
+JOIN employees AS oe
+ON ce.department_id = oe.department_id
+JOIN departments AS d
+ON oe.department_id = d.department_id
+AND ce.name <> oe.name;
+
+#44. Find the highest-paid employee in each department and display 
+# the employee name, department name, and salary.
+SELECT name, department_id, salary
+FROM employees
+WHERE (department_id,salary) IN
+(SELECT d.department_id, MAX(salary) max_salary
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY e.department_id);
+
+#45. Find employees whose manager belongs to a different department, 
+# and display the employee name, manager name, employee department, 
+# and manager department.
+
+#46. Find departments whose average employee salary is greater than 
+# the company's overall average salary, and display the department 
+# name and department average salary.
+SELECT d.department_name, AVG(e.salary) dept_avg_salary
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+GROUP BY e.department_id
+HAVING AVG(e.salary) >
+(SELECT AVG(salary)
+FROM employees);
