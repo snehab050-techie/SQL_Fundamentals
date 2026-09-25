@@ -263,3 +263,59 @@ Simple definition:
 
 An index is a database object/data structure that helps the database find rows faster without scanning the entire table.
 
+-------------------
+
+Indexes were introduced mainly to solve the problem of:
+
+Slow data retrieval when tables contain a large amount of data.
+
+As the table becomes larger, searching through the entire table can become expensive.
+
+Indexes allow the database to locate matching rows more efficiently.
+
+So:
+
+WITHOUT INDEX
+Table -> search many/all rows -> find required row
+
+WITH INDEX
+Index -> locate required row -> access table row
+
+-------------
+
+Imp Note: 
+
+We might now think:
+
+"Then why don't we create indexes on every column?"
+
+Very good question.
+
+Because indexes also have a cost.
+
+An index needs:
+
+> additional storage
+> maintenance
+> updates when table data changes
+
+Suppose we have:
+INSERT INTO employees ...
+
+The database doesn't just insert the row into the table.
+
+If employee_id has an index, the database may also need to update that index.
+
+Similarly:
+
+UPDATE employees
+SET employee_id = 200
+WHERE employee_id = 100;
+
+The index may need to be updated.
+
+So indexes give us:
+
+Benefit : Faster reads/searches
+
+Cost : Additional storage + maintenance overhead for INSERT/UPDATE/DELETE
