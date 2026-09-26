@@ -404,3 +404,105 @@ ON employees(employee_id);
 Now the database has an index that helps locate employee 105.
 
 The exact implementation depends on the database system, and in many systems indexes use tree-based structures such as B-trees/B+ trees.
+
+Why would we create a Non-Clustered Index?
+--------------------------------------------
+
+Suppose our application frequently searches:
+
+SELECT *
+FROM employees
+WHERE department_id = 10;
+
+and:
+
+SELECT *
+FROM employees
+WHERE name = 'Rahul';
+
+We could potentially have indexes on:
+
+department_id
+name
+
+These can be separate non-clustered indexes.
+
+Conceptually:
+
+Table
+ ↓
+employees
+
+Non-clustered index 1
+department_id
+       ↓
+     rows
+
+Non-clustered index 2
+name
+       ↓
+     rows
+
+This is why a table can have multiple non-clustered indexes.
+
+But should we index everything?
+---------------------------------
+
+No.
+
+Suppose we have:
+
+employee_id
+name
+department_id
+salary
+city
+gender
+joining_year
+
+We don't automatically create seven indexes.
+
+We usually consider columns that are frequently used for things such as:
+
+WHERE
+JOIN
+ORDER BY
+
+and sometimes other query patterns.
+
+But the decision depends on the workload and database optimizer.
+
+Note: Indexes can improve query performance by reducing the amount of data the database needs to scan, but the optimizer decides whether an index should be used.
+
+Important questions
+-----------------------
+
+1. "Your production application has a table with 20 million records. A query searching by customer_id is taking several seconds. What would you investigate?"
+
+	Wecould say: "First I would analyze the query and execution plan to understand whether a full table scan is occurring. 
+	If customer_id is frequently used for searching and doesn't already have an appropriate index, we could consider creating an index on that column. 
+	I would also consider the read/write workload and index maintenance cost before adding it."
+
+2. What is an Index?
+
+	An index is a database data structure that helps retrieve rows more efficiently, reducing the need to scan the 
+	entire table.
+
+3. Why do we use indexes?
+
+	We use indexes to improve query performance, especially when searching or filtering large tables.
+
+4. What is a Clustered Index?
+
+	A clustered index organizes the table's rows according to the index key. Since the table data can have 
+	only one such organization, a table generally has only one clustered index.
+
+5. What is a Non-Clustered Index?
+
+	A non-clustered index is a separate index structure that stores indexed values along with references to the 
+	corresponding table rows. A table can have multiple non-clustered indexes.
+
+6. Main difference?
+
+	A clustered index determines the organization of the table data itself, whereas a non-clustered index is a separate 
+	structure that points to the actual data.
