@@ -506,3 +506,67 @@ Important questions
 
 	A clustered index determines the organization of the table data itself, whereas a non-clustered index is a separate 
 	structure that points to the actual data.
+
+Views in SQL
+---------------
+
+A View is a virtual table created using a SQL query.
+
+CREATE VIEW view_name AS
+SELECT column1, column2
+FROM employees;
+
+SELECT *
+FROM view_name;
+
+Instead of repeatedly using the original query.
+
+Need of Views
+--------------
+
+1. Simplify complex queries
+
+2. Security - access the View without directly exposing sensitive columns.
+	Views can help with data security by exposing only required columns/rows.
+
+3. Reusability
+	Instead of writing the same complicated query repeatedly:
+	we save it as a View and reuse it.
+
+Important queries
+-------------------
+
+1. What is a view?
+
+	A View is a virtual table created using a SQL query. It doesn't normally store a separate copy of the data. 
+	Views are mainly used to simplify complex queries, provide controlled access to data, and improve query reusability.
+
+2. Why do we use Views?
+
+	S -> Simplify complex queries
+	S -> Security / controlled access
+	R -> Reusability
+
+3. Is a View a physical table?
+
+	No. A normal View is a virtual table based on an underlying SQL query. 
+	It generally doesn't store a separate copy of the data.
+
+4. Can we use JOINs inside a View?
+	Yes
+	
+5. Can we update data through a View?
+
+	Sometimes.
+
+	Some simple Views can be updatable, but Views involving things like:
+
+	> complex JOINs
+	> aggregation
+	> GROUP BY
+	> DISTINCT
+	> certain calculated columns
+
+may not be directly updatable, depending on the database.
+
+
