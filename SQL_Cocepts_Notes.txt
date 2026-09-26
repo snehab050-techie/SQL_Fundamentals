@@ -319,3 +319,88 @@ So indexes give us:
 Benefit : Faster reads/searches
 
 Cost : Additional storage + maintenance overhead for INSERT/UPDATE/DELETE
+
+Clustered vs Non-Clustered index
+--------------------------------
+
+Clustered Index = The index determines the physical or logical ordering of the actual table data.
+
+Non-Clustered Index = The index is a separate structure that contains indexed values and references/pointers to the actual table rows.
+
+Clustered Index
+------------------
+
+Suppose we create a clustered index on employee_id.
+
+The database organizes the actual table data according to the indexed key.
+
+They are called clustered because the actual data rows are organized/clustered around the index key.
+
+Think of student records arranged by:
+
+Roll Number
+
+instead of randomly:
+
+35
+2
+19
+7
+44
+1
+
+They could be organized:
+
+1
+2
+7
+19
+35
+44
+
+So finding a particular roll number becomes more efficient.
+
+Note: A table can have only one clustered index. But, a table can have multiple non-clustered indexes.
+
+Non-Clustered Index
+----------------------
+
+The database maintains a separate structure for index with indexed values and references or pointers to the actula table rows.
+
+Here the index is separate from the actual table data.
+
+So,
+
+Clustered
+
+INDEX
+  |
+DATA IS ORGANIZED AROUND INDEX KEY
+
+Non-Clustered
+
+INDEX
+  |
+REFERENCE/POINTER
+  |
+ACTUAL DATA
+
+The index provides an efficient path to find the required rows instead of blindly scanning the entire table.
+
+Example:
+---------
+
+Suppose we frequently run:
+
+SELECT *
+FROM employees
+WHERE employee_id = 105;
+
+We could create an index:
+
+CREATE INDEX idx_employee_id
+ON employees(employee_id);
+
+Now the database has an index that helps locate employee 105.
+
+The exact implementation depends on the database system, and in many systems indexes use tree-based structures such as B-trees/B+ trees.
