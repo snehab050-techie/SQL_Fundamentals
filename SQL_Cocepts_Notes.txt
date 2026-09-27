@@ -569,4 +569,23 @@ Important queries
 
 may not be directly updatable, depending on the database.
 
+SQL Stored Procedure
+---------------------
+
+A Stored Procedure allows us to execute a set of SQL statements.
+
+Imagine your application repeatedly needs to perform this operation:
+
+1. Find employee
+2. Update salary
+3. Insert salary history
+4. Update something else
+5. Return result
+
+Instead of sending all these SQL statements separately from the application, we can put them inside a Stored Procedure.
+
+So,
+
+A Stored Procedure is a pre-defined group of SQL statements stored in the database that can be executed when needed.
+
 
