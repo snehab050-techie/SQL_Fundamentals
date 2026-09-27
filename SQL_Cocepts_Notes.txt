@@ -612,4 +612,42 @@ Need of stored procuedure
 
 4. Performance - Stored procedures can improve performance in some database/application scenarios by reducing repeated parsing/network round trips and reusing database-side logic. But that doesn't mean stored procedures are aways faster.
 
+Important questions
+---------------------
+
+1. What is a Stored Procedure?
+
+	A stored procedure is a pre-defined group of SQL statements stored in a database that can be executed whenever required.
+	It is useful for reusable database operations, reducing repeated SQL logic, and controlling access to database operations.
+
+2. Can Stored Procedures accept parameters?
+
+	Yes.
+
+	Example- CALL get_employee_by_id(101);
+
+	The procedure can receive 101 and retrieve that employee.
+
+3. Can a Stored Procedure perform INSERT, UPDATE and DELETE?
+
+	Yes.
+
+	For example, one procedure could:
+
+		INSERT ...
+		UPDATE ...
+		DELETE ...
+
+	depending on its purpose and database.
+
+4. View vs Stored Procedure
+
+View vs Stored Procedure?
+
+Remember:
+	View = data representation.
+	Stored Procedure = executable database logic.
+
+
+
 
