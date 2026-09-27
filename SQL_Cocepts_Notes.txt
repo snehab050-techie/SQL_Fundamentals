@@ -588,4 +588,17 @@ So,
 
 A Stored Procedure is a pre-defined group of SQL statements stored in the database that can be executed when needed.
 
+Creating a stored procedure
+----------------------------
+
+CREATE PROCEDURE get_employee()
+BEGIN
+	SELECT *
+	FROM employees;
+END;
+
+Then:
+
+CALL get_employee();
+
 
