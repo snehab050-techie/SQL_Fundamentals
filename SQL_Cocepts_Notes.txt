@@ -601,4 +601,15 @@ Then:
 
 CALL get_employee();
 
+Need of stored procuedure
+--------------------------
+
+1. Reusability - write procedure or query once, use it whenever needed.
+
+2. Reduce repeated SQL logic - Instead of application code repeatedly sending multiple SQL statements, the logic can be kept in the database.
+
+3. Security - We can give an application/user permission to execute a procedure without necessarily giving direct permissions on every underlying table.
+
+4. Performance - Stored procedures can improve performance in some database/application scenarios by reducing repeated parsing/network round trips and reusing database-side logic. But that doesn't mean stored procedures are aways faster.
+
 
