@@ -648,6 +648,65 @@ Remember:
 	View = data representation.
 	Stored Procedure = executable database logic.
 
+Trigger in SQL
+-----------------
 
+A Trigger is a database object that automatically executes when a specified event occurs on a table.
+
+We don't normally call a Trigger manually like a Stored Procedure.
+
+Need of triggers
+-----------------
+
+1. Auditing
+
+	Track changes.
+
+		Who changed?
+		What changed?
+		When changed?
+
+2. Maintain history
+
+	For example:
+
+		Salary history
+		Status history
+		Address history
+
+3. Automatic actions
+
+	When one database event happens, another action can automatically happen.
+
+Important questions on triggers
+----------------------------------
+
+1. What is a Trigger?
+
+	A Trigger is a database object that automatically executes when a specified event such as INSERT, UPDATE, or DELETE occurs on a table.
+
+2. Do we manually call a Trigger?
+
+	Usually, no.
+
+	That's one of the major differences between a procedure and trigger.
+
+	Stored Procedure
+	-> We explicitly call it.
+
+	Trigger
+	-> Database automatically fires it when the specified event occurs.
+
+3. What are common Trigger events?
+
+	INSERT
+	UPDATE
+	DELETE
+
+4. Why are Triggers used?
+
+	Mainly:
+
+	Auditing, maintaining history, and automatically enforcing or performing database-related actions.
 
 
