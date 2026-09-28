@@ -57,3 +57,12 @@ FROM EMPLOYEE;
 
 DROP TABLE Employee;
 ALTER TABLE NewEmp RENAME TO Employee;
+
+#8) Find second highest salaried employee using window funtion
+# We can use the same query to find out the nth highest salary
+SELECT emp_sal_rank.name, emp_sal_rank.salary
+FROM
+(SELECT name, salary, DENSE_RANK() OVER (ORDER BY salary DESC) AS salary_rank
+FROM employees) AS emp_sal_rank
+WHERE emp_sal_rank.salary_rank = 2;
+

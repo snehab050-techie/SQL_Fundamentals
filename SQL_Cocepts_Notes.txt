@@ -3,7 +3,7 @@ Normalization
 
 Normalization is the process of organizing data in database tables to reduce unnecessary data duplication and avoid data-related problems.
 
-The two things you should remember are:
+The two things we should remember are:
 
 Normalization -> reduce redundancy (duplicate data)
 
