@@ -62,7 +62,17 @@ ALTER TABLE NewEmp RENAME TO Employee;
 # We can use the same query to find out the nth highest salary
 SELECT emp_sal_rank.name, emp_sal_rank.salary
 FROM
-(SELECT name, salary, DENSE_RANK() OVER (ORDER BY salary DESC) AS salary_rank
-FROM employees) AS emp_sal_rank
-WHERE emp_sal_rank.salary_rank = 2;
+	(SELECT name, salary, 
+    DENSE_RANK() OVER (ORDER BY salary DESC) AS salary_rank
+	FROM employees) AS emp_sal_rank
+WHERE emp_sal_rank.salary_rank = 3;
+
+# 9) Find the duplicate employee names in the employees table and 
+# display the name and the number of times each name occurs.
+SELECT name, COUNT(name) emp_count
+FROM employees
+GROUP BY name
+HAVING COUNT(name) > 1;
+
+
 
