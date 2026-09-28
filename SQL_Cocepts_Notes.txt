@@ -33,7 +33,7 @@ John -> 9999 wrong
 
 Now our database contains inconsistent information.
 
-2. 2. Insert anomaly
+2. Insert anomaly
 
 Suppose we want to add a new department:
 
