@@ -579,3 +579,13 @@ GROUP BY e.department_id
 HAVING AVG(e.salary) >
 (SELECT AVG(salary)
 FROM employees);
+
+#Find employees earning greater than their manager
+SELECT e.name emp_name, m.name manager_name, e.salary emp_sal, m.salary manager_sal
+FROM employees AS e
+JOIN employees AS m
+ON e.manager_id = m.employee_id
+WHERE e.salary > m.salary;
+
+
+
