@@ -76,19 +76,30 @@ HAVING COUNT(name) > 1;
 
 # 10) Write a SQL query to delete duplicate rows while keeping one 
 # copy of each duplicate record.
+
 DELETE FROM employees
-WHERE employee_id IN (
-    SELECT employee_id
-    FROM (
-        SELECT employee_id,
-               ROW_NUMBER() OVER (
-                   PARTITION BY name, salary
-                   ORDER BY employee_id
-               ) AS row_num
-        FROM employees
-    ) AS duplicates
-    WHERE row_num > 1
+WHERE employee_id IN(
+SELECT employee_id
+FROM
+	(SELECT employee_id, name, salary,
+		ROW_NUMBER() OVER
+        (PARTITION BY name, salary
+        ORDER BY employee_id) AS row_num
+	FROM employees) AS duplicates
+WHERE row_num > 1
 );
+
+#11) Find duplicate records in a table
+SELECT employee_id
+FROM
+	(SELECT employee_id, name, salary,
+		ROW_NUMBER() OVER
+        (PARTITION BY name, salary
+        ORDER BY employee_id) AS row_num
+	FROM employees) AS duplicates
+WHERE row_num > 1;
+
+
 
 
 
