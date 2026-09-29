@@ -99,7 +99,21 @@ FROM
 	FROM employees) AS duplicates
 WHERE row_num > 1;
 
+#12) Department Wise Maximum Salary
+SELECT * FROM employees;
 
+SELECT department, MAX(salary) max_salary
+FROM employees
+GROUP BY department;
 
+#13) Count employees department wise
+SELECT department, COUNT(employee_id) emp_count
+FROM employees
+GROUP BY department;
 
+#14) Top 3 salary
+SELECT name, salary
+FROM employees
+ORDER BY salary DESC
+LIMIT 3;
 
