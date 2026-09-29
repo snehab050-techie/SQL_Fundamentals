@@ -117,3 +117,5 @@ FROM employees
 ORDER BY salary DESC
 LIMIT 3;
 
+#15) Joins, Finding Null values
+
