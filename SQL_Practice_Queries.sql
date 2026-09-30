@@ -128,3 +128,7 @@ LIMIT 3;
 # Find the average salary of Developers in each department. Exclude departments where the average developer salary is less than ₹6,00,000. Sort the final output by the average salary.
 
 # Write an SQL query to find all duplicate email addresses or employee names in the database.
+
+# List the cities that have more than 5 employees living in them, but do not count any employees who were hired in the last 6 months (assume a fixed date or filter for this example). Sort the cities alphabetically.
+
+# Write a query to find the number of employees working in each job role within each department. Sort the output by department ID, and then by the count of employees in descending order.
