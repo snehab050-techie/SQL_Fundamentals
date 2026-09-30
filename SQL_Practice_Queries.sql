@@ -119,3 +119,6 @@ LIMIT 3;
 
 #15) Joins, Finding Null values
 
+#16) Difference between WHERE and HAVING
+
+#IN vs EXISTS
