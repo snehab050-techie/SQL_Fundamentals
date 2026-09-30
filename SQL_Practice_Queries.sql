@@ -122,3 +122,9 @@ LIMIT 3;
 #16) Difference between WHERE and HAVING
 
 #IN vs EXISTS
+
+# Write a query to find the total salary spent on each department. Only include departments where the total expenditure is greater than ₹15,00,000, and sort the result in descending order of the total expense.
+
+# Find the average salary of Developers in each department. Exclude departments where the average developer salary is less than ₹6,00,000. Sort the final output by the average salary.
+
+# Write an SQL query to find all duplicate email addresses or employee names in the database.
