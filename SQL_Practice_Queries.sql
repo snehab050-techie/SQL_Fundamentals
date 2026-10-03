@@ -133,7 +133,7 @@ LIMIT 3;
 
 # Write a query to find the number of employees working in each job role within each department. Sort the output by department ID, and then by the count of employees in descending order.
 
-# Query to delete duplicate records from the table keeping only one record - using window function row_number()
+#17) Query to delete duplicate records from the table keeping only one record - using window function row_number()
 
 CREATE TABLE cars(
 	model_id INT PRIMARY KEY,
@@ -148,6 +148,8 @@ TRUNCATE cars;
 
 ALTER TABLE cars
 DROP PRIMARY KEY;
+
+#
  
 INSERT INTO cars
 VALUES(101,'slavia','navyblue','skoda'),
@@ -168,3 +170,24 @@ FROM cars) AS duplicates
 WHERE row_rank>1);
 
 SET SQL_SAFE_UPDATES = 0;
+
+#solved the same without using row_number function
+DELETE
+FROM cars
+WHERE model_id NOT IN(
+SELECT min_id
+FROM
+(SELECT MIN(model_id) min_id
+FROM cars
+GROUP BY model_name, brand) 
+AS keepers);
+
+
+#18) You have anemployee table - id, name, department, salary
+# For every employee, display the highest and lowest salary in their department
+SELECT employee_id, name, department,salary,
+	   MAX(salary) OVER
+       (PARTITION BY department) AS hi,
+       MIN(salary) OVER
+       (PARTITION BY department) AS low
+FROM employees;
