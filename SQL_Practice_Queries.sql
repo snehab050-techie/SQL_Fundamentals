@@ -132,3 +132,39 @@ LIMIT 3;
 # List the cities that have more than 5 employees living in them, but do not count any employees who were hired in the last 6 months (assume a fixed date or filter for this example). Sort the cities alphabetically.
 
 # Write a query to find the number of employees working in each job role within each department. Sort the output by department ID, and then by the count of employees in descending order.
+
+# Query to delete duplicate records from the table keeping only one record - using window function row_number()
+
+CREATE TABLE cars(
+	model_id INT PRIMARY KEY,
+    model_name VARCHAR(50),
+    color VARCHAR(50),
+    brand VARCHAR(50)
+);
+
+SELECT * FROM cars;
+
+TRUNCATE cars;
+
+ALTER TABLE cars
+DROP PRIMARY KEY;
+ 
+INSERT INTO cars
+VALUES(101,'slavia','navyblue','skoda'),
+(102,'virtus','green','volkswagaon'),
+(103,'slavia','balck','skoda'),
+(104,'virtus','navyblue','volkswagaon'),
+(105,'virtus','white','volkswagaon');
+
+DELETE FROM cars
+WHERE model_id IN
+(SELECT model_id
+FROM
+(SELECT model_id,model_name,
+	   ROW_NUMBER() OVER
+       (PARTITION BY model_name,brand
+       ORDER BY model_id) AS row_rank
+FROM cars) AS duplicates
+WHERE row_rank>1);
+
+SET SQL_SAFE_UPDATES = 0;
