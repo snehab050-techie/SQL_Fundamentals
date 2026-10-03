@@ -190,4 +190,7 @@ SELECT employee_id, name, department,salary,
        (PARTITION BY department) AS hi,
        MIN(salary) OVER
        (PARTITION BY department) AS low
-FROM employees;
+FROM employees
+ORDER BY salary DESC;
+
+#Window functions
