@@ -148,8 +148,6 @@ TRUNCATE cars;
 
 ALTER TABLE cars
 DROP PRIMARY KEY;
-
-#
  
 INSERT INTO cars
 VALUES(101,'slavia','navyblue','skoda'),

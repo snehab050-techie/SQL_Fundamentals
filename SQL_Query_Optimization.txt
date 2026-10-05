@@ -1,0 +1,22 @@
+SQL Query Optimization
+-----------------------
+
+SQL Query Optimization means improving a SQL query so that it executes faster and uses 
+database resources efficiently.
+
+Example:
+
+Table - Employees 
+With 10 million records
+
+we have query:
+
+SELECT *
+FROM employees
+WHERE emp_id = 1001;
+
+Suppose this query take 12 seconds to execute. In a real production systems, this is a problem.
+If the query is taking 12 seconds to execute per user, imagine for millions of users executing the same query at a time!!
+
+Now we want to bring it from 12 seconds to 2 seconds without changing the expected result. That's Query optimization or Query performance tuning.
+
