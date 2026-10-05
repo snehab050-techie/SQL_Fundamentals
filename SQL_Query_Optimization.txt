@@ -37,3 +37,44 @@ Why does a Query become slow?
 and many more!!
 
 So optimization isn't simply - "Add an index"
+
+What happens when we execute a query
+---------------------------------------
+
+Suppose our Java application executes:
+
+SELECT name, salary
+FROM employees
+WHERE employee_id = 1001;
+
+What happens inside the database?
+
+Very roughly:
+
+			 Java Application
+      				 ↓
+     				SQL
+     				 ↓
+				Database
+       				 ↓
+			     SQL Parser
+       				 ↓
+			   Query Optimizer
+                                 ↓
+                            Execution Plan
+                                 ↓
+                              Execution
+                                 ↓
+                              Result
+                                 ↓
+                          Java Application
+
+The important part for us is 
+
+                                SQL
+                                 ↓
+                              Optimizer
+                                 ↓
+                            Execution Plan
+
+
