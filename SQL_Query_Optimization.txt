@@ -20,3 +20,20 @@ If the query is taking 12 seconds to execute per user, imagine for millions of u
 
 Now we want to bring it from 12 seconds to 2 seconds without changing the expected result. That's Query optimization or Query performance tuning.
 
+Why does a Query become slow?
+------------------------------
+
+1. Full table scan
+2. Missing indexes
+3. Incorrect / Inefficient indexes
+4. Poor database design
+5. Poor JOIN conditions
+6. DB CPU & I/O pressure
+7. Querying unnecessary columns
+8. Scanning more rows at a time
+9. Blocking / Locking issues
+10. Large data volume
+
+and many more!!
+
+So optimization isn't simply - "Add an index"
