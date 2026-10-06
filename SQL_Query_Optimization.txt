@@ -78,3 +78,49 @@ The important part for us is
                             Execution Plan
 
 
+
+Execution Plan
+--------------
+
+An execution plan tells us:
+
+"How does the database intend to execute this query?"
+
+For example:
+
+SELECT *
+FROM employees
+WHERE employee_id = 1001;
+
+The database might decide:
+
+Use index on employee_id
+        ↓
+Find employee_id = 1001
+        ↓
+Fetch the row
+
+Another query might result in:
+
+Full Table Scan
+        ↓
+Read 10 million rows
+        ↓
+Check employee_id for every row
+        ↓
+Return matching row
+
+Obviously the second approach could be much slower.
+
+Cost
+------
+
+Cost is generally an optimizer's internal estimate of the relative resources required for a particular execution plan.
+
+It can consider things such as:
+
+CPU
+disk I/O
+number of rows
+operations
+access paths
