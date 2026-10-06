@@ -157,3 +157,37 @@ That's essentially:
 FULL TABLE SCAN
 
 Potentially expensive.
+
+Index changes the game
+----------------------------
+
+Suppose we create:
+
+CREATE INDEX idx_employee_id
+ON employees(employee_id);
+
+Now the database has a structure that helps locate the required row.
+
+Conceptually:
+
+Without Index
+
+Table
+ ↓
+10 million rows
+ ↓
+Search everything
+
+versus:
+
+With Index
+
+Index
+ ↓
+Find employee_id = 5000000
+ ↓
+Locate row
+ ↓
+Return data
+
+Much less work in the appropriate situation.
