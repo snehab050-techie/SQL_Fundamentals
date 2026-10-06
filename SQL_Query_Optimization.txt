@@ -113,7 +113,7 @@ Return matching row
 Obviously the second approach could be much slower.
 
 Cost
-------
+-------
 
 Cost is generally an optimizer's internal estimate of the relative resources required for a particular execution plan.
 
@@ -124,3 +124,36 @@ disk I/O
 number of rows
 operations
 access paths
+
+Full Table Scan
+-----------------
+
+Imagine:
+
+employees
+---------
+10 million rows
+
+Query:
+
+SELECT *
+FROM employees
+WHERE employee_id = 5000000;
+
+Suppose there is no useful index on employee_id.
+
+The database may need to check:
+
+Row 1       → employee_id?
+Row 2       → employee_id?
+Row 3       → employee_id?
+...
+Row 5,000,000 → employee_id?
+...
+Row 10,000,000 → employee_id?
+
+That's essentially:
+
+FULL TABLE SCAN
+
+Potentially expensive.
