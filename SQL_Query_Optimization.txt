@@ -191,3 +191,36 @@ Locate row
 Return data
 
 Much less work in the appropriate situation.
+
+"Should we create an index on every column?"
+-------------------------------------------------
+
+No.
+
+Indexes have a cost.
+
+When we perform:
+
+INSERT
+UPDATE
+DELETE
+
+the database may also need to maintain the indexes.
+
+So too many indexes can cause:
+
+SELECT
+   ↓
+Faster
+
+BUT
+
+INSERT/UPDATE/DELETE
+   ↓
+Potentially slower
+
+And indexes also consume storage.
+
+Therefore:
+
+Indexes should be created based on actual query patterns and workload, not blindly on every column.
