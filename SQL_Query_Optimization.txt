@@ -269,3 +269,15 @@ Deploy/change
      ↓
 Monitor production
 
+First analyze:
+-------------
+
+- existing indexes
+- query frequency
+- selectivity
+- execution plan
+- table size
+- write workload
+- DBA standards
+- impact on other queries
+
