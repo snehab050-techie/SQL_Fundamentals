@@ -192,5 +192,3 @@ FROM employees
 ORDER BY salary DESC;
 
 #Window functions
-
-

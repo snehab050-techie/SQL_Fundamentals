@@ -224,3 +224,48 @@ And indexes also consume storage.
 Therefore:
 
 Indexes should be created based on actual query patterns and workload, not blindly on every column.
+
+------------------------------------------------------
+
+Analyzing SQL Query Optimization in Production Environments
+
+API: /getEmployeeDetails
+
+Normal response time:
+500 ms
+
+Current response time:
+8 seconds
+
+We shouldn't decide immediately: Database is slow.
+
+Instead investigate.
+
+API is slow
+     ↓
+Check application logs
+     ↓
+Identify SQL query
+     ↓
+Execute/analyze query
+     ↓
+Check execution plan
+     ↓
+Identify expensive operation
+     ↓
+Check indexes
+     ↓
+Check joins / filters
+     ↓
+Check row counts
+     ↓
+Check DB resource usage
+     ↓
+Optimize
+     ↓
+Test
+     ↓
+Deploy/change
+     ↓
+Monitor production
+
