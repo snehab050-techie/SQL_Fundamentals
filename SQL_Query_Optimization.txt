@@ -281,3 +281,14 @@ First analyze:
 - DBA standards
 - impact on other queries
 
+----------------------------
+
+Avoid SELECT * when we only need specific columns.
+
+This can reduce:
+- data transferred
+- I/O
+- memory usage
+- network traffic
+- application processing
+
