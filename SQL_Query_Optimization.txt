@@ -292,3 +292,41 @@ This can reduce:
 - network traffic
 - application processing
 
+-----------------------------
+
+Another major issue: Functions on columns
+
+Consider:
+
+SELECT *
+FROM employees
+WHERE UPPER(name) = 'SNEHA';
+
+Depending on the database and index design, applying a function to the column can prevent normal index usage.
+
+------------------------------
+
+JOIN optimization
+
+Suppose:
+
+SELECT e.name, d.department_name
+FROM employees e
+JOIN departments d
+ON e.department_id = d.department_id;
+
+You need to investigate things like:
+Is department_id indexed?
+Are we joining huge tables?
+How many rows are being joined?
+Is the JOIN condition correct?
+Are unnecessary rows being joined?
+
+A bad JOIN can cause a huge amount of work.
+
+For example:
+1 million employees
+       x
+100,000 department records
+
+If the query is poorly constructed, the amount of processing can explode.
