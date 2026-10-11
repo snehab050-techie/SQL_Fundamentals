@@ -379,3 +379,37 @@ Indexes are generally especially useful for selective conditions.
 
 Interview question:
 Selectivity indicates how effectively a condition reduces the number of rows that need to be processed.
+
+Query Optimization is NOT just about the query
+This is extremely important for your production-support role.
+Suppose:
+API
+ ↓
+Java Application
+ ↓
+Connection Pool
+ ↓
+Database
+ ↓
+SQL
+
+The API could be slow because of:
+
+Java processing
+        OR
+Connection pool exhaustion
+        OR
+Network latency
+        OR
+Database CPU
+        OR
+Database I/O
+        OR
+Locking
+        OR
+Slow SQL
+
+Therefore:
+Never assume that a slow API automatically means a slow SQL query.
+
+Need evidence.
