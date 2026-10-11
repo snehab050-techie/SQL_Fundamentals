@@ -351,3 +351,31 @@ Index Seek
 Conceptually:
 Go directly to matching index entries
 Often efficient for selective lookups.
+
+electivity — an important optimization concept
+Suppose you have:
+100 million rows
+
+Column:
+GENDER
+
+Values:
+MALE
+FEMALE
+
+If our query:
+WHERE gender = 'MALE'
+
+you might get 50 million rows.
+The filter isn't very selective.
+But suppose:
+WHERE employee_id = 12345
+
+returns only:
+1 row
+
+That's highly selective.
+Indexes are generally especially useful for selective conditions.
+
+Interview question:
+Selectivity indicates how effectively a condition reduces the number of rows that need to be processed.
