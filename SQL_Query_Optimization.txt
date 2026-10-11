@@ -330,3 +330,24 @@ For example:
 100,000 department records
 
 If the query is poorly constructed, the amount of processing can explode.
+
+----------------------------------
+
+What is a Query Execution Plan actually showing us?
+
+We'll commonly encounter operations such as:
+
+Table Scan / Full Table Scan
+
+Read a large portion/all of the table
+
+Potentially expensive.
+
+Index Scan
+Read many entries from an index
+Can be appropriate when many rows are required.
+
+Index Seek
+Conceptually:
+Go directly to matching index entries
+Often efficient for selective lookups.
