@@ -446,3 +446,27 @@ FROM TABLE(DBMS_XPLAN.DISPLAY);
 TABLE ACCESS FULL
 
 This means Oracle is doing a Full Table Scan.
+
+To check indexes
+-------------------
+
+SELECT index_name, column_name
+FROM user_ind_columns
+WHERE table_name = 'employees';
+
+I have a slow query
+        ↓
+What is Oracle doing?
+        ↓
+EXPLAIN PLAN
+        ↓
+DBMS_XPLAN.DISPLAY
+        ↓
+Read the plan
+        ↓
+Identify expensive operation
+        ↓
+Check indexes
+        ↓
+Decide whether optimization is needed
+
