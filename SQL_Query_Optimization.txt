@@ -435,3 +435,14 @@ WHERE employee_id = 1003;
 
 SELECT *
 FROM TABLE(DBMS_XPLAN.DISPLAY);
+
+--------------------------------------------------------------------------------
+| Id | Operation         | Name            | Rows | Cost |
+--------------------------------------------------------------------------------
+|  0 | SELECT STATEMENT  |                 |    1 |  500 |
+|  1 | TABLE ACCESS FULL | ITR_EVERIFY_DETL|    1 |  500 |
+--------------------------------------------------------------------------------
+
+TABLE ACCESS FULL
+
+This means Oracle is doing a Full Table Scan.
