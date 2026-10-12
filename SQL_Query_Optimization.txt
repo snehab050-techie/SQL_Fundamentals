@@ -352,8 +352,10 @@ Conceptually:
 Go directly to matching index entries
 Often efficient for selective lookups.
 
-electivity — an important optimization concept
-Suppose you have:
+selectivity - an important optimization concept
+-------------------------
+
+Suppose we have:
 100 million rows
 
 Column:
@@ -366,7 +368,8 @@ FEMALE
 If our query:
 WHERE gender = 'MALE'
 
-you might get 50 million rows.
+we might get 50 million rows.
+
 The filter isn't very selective.
 But suppose:
 WHERE employee_id = 12345
@@ -381,8 +384,9 @@ Interview question:
 Selectivity indicates how effectively a condition reduces the number of rows that need to be processed.
 
 Query Optimization is NOT just about the query
-This is extremely important for your production-support role.
+
 Suppose:
+
 API
  ↓
 Java Application
@@ -413,3 +417,21 @@ Therefore:
 Never assume that a slow API automatically means a slow SQL query.
 
 Need evidence.
+
+-------------------------
+
+How to check an Estimated Execution Plan in Oracle
+
+SQL Query:
+
+SELECT *
+FROM employees
+WHERE employee_id = 1003;
+
+EXPLAIN PLAN FOR
+SELECT *
+FROM employees
+WHERE employee_id = 1003;
+
+SELECT *
+FROM TABLE(DBMS_XPLAN.DISPLAY);
