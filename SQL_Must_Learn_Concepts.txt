@@ -1,0 +1,68 @@
+1. SQL query writing - highest priority
+------------------------------------------
+
+- Find the second-highest salary.
+- Find the Nth-highest salary.
+- Find the highest salary in each department.
+- Find duplicate records in a table.
+- Delete duplicate records while retaining one.
+- Find employees earning more than the department average.
+- Find employees earning more than their manager.
+- Find the top 3 salaries in each department.
+- Find employees who joined in the last 30 days.
+- Find departments with no employees.
+
+2. Joins and subqueries
+
+- Explain INNER, LEFT, RIGHT and FULL OUTER JOIN.
+- Difference between JOIN and subquery.
+- Difference between correlated and non-correlated subqueries.
+- Difference between IN and EXISTS.
+- Difference between NOT IN and NOT EXISTS, especially with NULL.
+- Find records present in one table but missing in another.
+- Explain self-join with a manager–employee example.
+
+3. GROUP BY, aggregate functions and filtering
+
+- Difference between WHERE and HAVING.
+- Difference between COUNT(*) and COUNT(column).
+- Explain GROUP BY with SUM, AVG, MAX, MIN.
+- Find departments with more than 5 employees.
+- Find duplicate email IDs using GROUP BY.
+- Why must non-aggregated selected columns generally appear in GROUP BY?
+
+
+4. SQL performance and query optimization
+
+- What is an index? When should you create one?
+- Clustered vs nonclustered indexes — understand the general concept and Oracle's differences.
+- What is an execution plan?
+- What are TABLE ACCESS FULL, INDEX RANGE SCAN, COST, ROWS and BYTES?
+- Why is a query running slowly?
+- How do you troubleshoot a slow SQL query in production?
+- Why can an index fail to improve performance?
+- How can functions on indexed columns affect index usage?
+- What is the difference between an index scan and a full table scan?
+
+5. SQL concepts and database fundamentals
+
+- Primary key vs unique key vs foreign key.
+- DELETE vs TRUNCATE vs DROP.
+- UNION vs UNION ALL.
+- NULL vs zero vs empty string.
+- CHAR vs VARCHAR2.
+- ROWNUM vs ROW_NUMBER().
+- What are CTEs and window functions?
+- What are views, stored procedures and triggers?
+- What is normalization (1NF, 2NF, 3NF)?
+
+6. Production support and transaction handling
+
+- What do you check when an application API returns no data?
+- How do you investigate an SQL query that times out?
+- What causes a database lock or blocking session?
+- What is a deadlock?
+- Explain COMMIT, ROLLBACK and SAVEPOINT.
+- What happens if an application fails after inserting data but before committing?
+- How do you investigate duplicate transactions?
+- How do you safely execute an UPDATE or DELETE in production?
