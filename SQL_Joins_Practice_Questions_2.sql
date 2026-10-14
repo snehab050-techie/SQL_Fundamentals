@@ -587,7 +587,14 @@ JOIN employees AS m
 ON e.manager_id = m.employee_id
 WHERE e.salary > m.salary;
 
-#hey i am verifying git commits
+#Find the top 3 salaries in each department.
+SELECT e.department_id,e.employee_id,e.name, e.salary, e.dr
+FROM
+(SELECT *,
+	   DENSE_RANK() OVER
+       (PARTITION BY department_id
+       ORDER BY salary DESC) AS dr
+FROM employees) AS e
+WHERE e.dr<=3;
 
-
-
+#we can replace DENSE_RANK() with ROW_NUMBER --> output will be same
