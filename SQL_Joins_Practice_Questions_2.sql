@@ -598,3 +598,10 @@ FROM employees) AS e
 WHERE e.dr<=3;
 
 #we can replace DENSE_RANK() with ROW_NUMBER --> output will be same
+
+--Find employees who joined inthe  last 30 days
+-- Oracle SQL
+	
+SELECT employee_id, name, join_date 
+FROM employees 
+WHERE join_date >= SYSDATE - 30;
