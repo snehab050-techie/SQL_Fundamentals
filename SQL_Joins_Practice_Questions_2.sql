@@ -281,6 +281,16 @@ JOIN departments AS d
 ON e.department_id = d.department_id
 GROUP BY d.department_name);
 
+#alternate solution
+SELECT e.employee_id, e.name, e.salary, d.department_name
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+WHERE (e.department_id, e.salary) IN
+(SELECT department_id, MAX(salary) max
+FROM employees
+GROUP BY department_id);
+
 #20. Find employees whose salary is greater than the average 
 # salary of their own department.
 SELECT e1.name employee, d2.department_name department, e1.salary salary
