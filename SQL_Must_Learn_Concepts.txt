@@ -16,7 +16,7 @@
 
 - Explain INNER, LEFT, RIGHT and FULL OUTER JOIN.
 - Difference between JOIN and subquery.
-- Difference between correlated and non-correlated subqueries.
+- Difference between correlated and non-correlated subqueries(normal subquery).
 - Difference between IN and EXISTS.
 - Difference between NOT IN and NOT EXISTS, especially with NULL.
 - Find records present in one table but missing in another.
