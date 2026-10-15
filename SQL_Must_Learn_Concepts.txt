@@ -66,3 +66,46 @@
 - What happens if an application fails after inserting data but before committing?
 - How do you investigate duplicate transactions?
 - How do you safely execute an UPDATE or DELETE in production?
+
+------------------------------------------------------------------
+
+Adding answers for concepts
+
+1. Difference between IN and EXISTS.
+
+IN -> Checks whether a value matches any value in a list.
+EXISTS -> Checks whether a query returns at least one row.
+
+IN : IN checks whether a value is present in a list of values.
+
+Our requirement: Find employees who belong to an existing department.
+
+SELECT name
+FROM employees
+WHERE department_id IN (
+    SELECT department_id
+    FROM departments
+);
+
+EXISTS : checks whether at least one matching row exists.
+
+SELECT e.name
+FROM employees e
+WHERE EXISTS (
+    SELECT 1
+    FROM departments d
+    WHERE d.department_id = e.department_id
+);
+
+Main differences
+-------------------
+
+                  IN	                                                      EXISTS
+Checks whether a value matches a list of values.	       Checks whether a subquery returns at least one row.
+
+Commonly used with a list or subquery.	                 Commonly used with a correlated subquery.
+
+Focuses on matching values.	                             Focuses on whether a matching row exists.
+
+Can be affected by NULL values in the                    EXISTS checks row existence; the selected value inside it doesn't matter.
+subquery, especially with NOT IN.
