@@ -109,3 +109,15 @@ Focuses on matching values.	                             Focuses on whether a ma
 
 Can be affected by NULL values in the                    EXISTS checks row existence; the selected value inside it doesn't matter.
 subquery, especially with NOT IN.
+
+- Difference between COUNT(*) and COUNT(column).
+
+COUNT(*) -> Counts all rows.
+COUNT(column_name) -> Counts only rows where that column is NOT NULL.
+
+COUNT(*) counts all rows in a table, regardless of NULL values. 
+COUNT(column_name) counts only the rows where that particular column is NOT NULL.
+
+- Why must non-aggregated selected columns generally appear in GROUP BY?
+
+Non-aggregated columns generally must appear in GROUP BY because SQL needs to know how to group the rows when aggregate functions like SUM(), AVG(), or COUNT() are used. Otherwise, SQL cannot determine which value to display for a non-aggregated column. This is the general rule in standard SQL, with some database-specific exceptions.
