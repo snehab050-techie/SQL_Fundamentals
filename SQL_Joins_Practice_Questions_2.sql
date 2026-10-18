@@ -594,6 +594,26 @@ JOIN departments AS d
 ON e.department_id = d.department_id
 GROUP BY e.department_id);
 
+#alternative solution - 1
+SELECT e1.name, d1.department_name, e1.salary
+FROM employees AS e1
+INNER JOIN departments AS d1
+ON e1.department_id = d1.department_id
+WHERE (e1.department_id, e1.salary) IN
+(SELECT e.department_id, MAX(e.salary) max_sal
+FROM employees AS e
+GROUP BY e.department_id);
+
+##alternative solution - 2
+SELECT e2.name, d1.department_name, e2.salary
+FROM employees AS e2
+INNER JOIN departments AS d1
+ON e2.department_id = d1.department_id
+WHERE e2.salary =
+(SELECT MAX(e1.salary) max_sal
+FROM employees AS e1
+WHERE e1.department_id = e2.department_id);
+
 #45. Find employees whose manager belongs to a different department, 
 # and display the employee name, manager name, employee department, 
 # and manager department.
