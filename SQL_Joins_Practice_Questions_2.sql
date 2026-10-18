@@ -636,6 +636,17 @@ HAVING AVG(e.salary) >
 (SELECT AVG(salary)
 FROM employees);
 
+#alternative solution
+SELECT d.department_name, ROUND(e.avg_sal) dept_avg_sal
+FROM (SELECT department_id, AVG(salary) avg_sal
+	  FROM employees
+	  GROUP BY department_id) AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+WHERE e.avg_sal >
+(SELECT AVG(salary)
+FROM employees);
+
 #Find employees earning greater than their manager
 SELECT e.name emp_name, m.name manager_name, e.salary emp_sal, m.salary manager_sal
 FROM employees AS e
