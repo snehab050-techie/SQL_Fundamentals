@@ -618,6 +618,12 @@ WHERE e1.department_id = e2.department_id);
 # and display the employee name, manager name, employee department, 
 # and manager department.
 
+SELECT e1.name emp, e1.department_id, e2.name mgr, e2.department_id
+FROM employees AS e1
+JOIN employees AS e2
+ON e1.manager_id = e2.employee_id
+WHERE e1.department_id != e2.department_id;
+
 #46. Find departments whose average employee salary is greater than 
 # the company's overall average salary, and display the department 
 # name and department average salary.
