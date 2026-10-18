@@ -572,6 +572,17 @@ JOIN departments AS d
 ON oe.department_id = d.department_id
 AND ce.name <> oe.name;
 
+#alternative solution
+SELECT e.name, d.department_name, e.salary
+FROM employees AS e
+INNER JOIN departments AS d
+ON e.department_id = d.department_id
+WHERE e.department_id IN
+(SELECT e1.department_id
+FROM employees AS e1
+GROUP BY e1.department_id
+HAVING COUNT(e1.employee_id) > 1);
+
 #44. Find the highest-paid employee in each department and display 
 # the employee name, department name, and salary.
 SELECT name, department_id, salary
