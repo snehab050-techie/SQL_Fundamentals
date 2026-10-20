@@ -151,8 +151,18 @@ HAVING AVG(e.salary) > 600000
 ORDER BY avg_sal;
 
 # Write an SQL query to find all duplicate email addresses or employee names in the database.
+SELECT email_id, emp_name
+FROM employee
+GROUP BY email_id
+HAVING count(*) > 1;
 
 # List the cities that have more than 5 employees living in them, but do not count any employees who were hired in the last 6 months (assume a fixed date or filter for this example). Sort the cities alphabetically.
+SELECT city, COUNT(*) emp_count
+FROM employee
+WHERE joining_date <= ADD_MONTHS(SYSDATE, -6)
+GROUP BY city
+HAVING COUNT(*) > 5
+ORDER BY city;
 
 # Write a query to find the number of employees working in each job role within each department. Sort the output by department ID, and then by the count of employees in descending order.
 
