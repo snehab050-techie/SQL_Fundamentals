@@ -165,6 +165,17 @@ HAVING COUNT(*) > 5
 ORDER BY city;
 
 # Write a query to find the number of employees working in each job role within each department. Sort the output by department ID, and then by the count of employees in descending order.
+SELECT dept_id, job_role, COUNT(*) emp_count
+FROM employees
+GROUP BY dept_id, job_role
+ORDER BY dept_id, emp_count DESC;
+
+# alternative 
+
+SELECT dept_id, job_role, COUNT(*) emp_count
+FROM employees
+GROUP BY dept_id, job_role
+ORDER BY 1, 3 DESC;
 
 #17) Query to delete duplicate records from the table keeping only one record - using window function row_number()
 
