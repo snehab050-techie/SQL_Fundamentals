@@ -117,6 +117,15 @@ FROM employees
 ORDER BY salary DESC
 LIMIT 3;
 
+#Best solution for finding - top 3 salary
+SELECT emp_id, emp_name, salary, row_rank
+FROM
+(SELECT emp_id, emp_name, salary,
+	   DENSE_RANK() OVER
+       (ORDER BY salary DESC) AS row_rank
+FROM employee) AS d
+WHERE d.row_rank <=3;
+
 #15) Joins, Finding Null values
 
 #16) Difference between WHERE and HAVING
