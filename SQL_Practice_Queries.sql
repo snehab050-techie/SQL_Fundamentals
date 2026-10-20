@@ -142,6 +142,13 @@ HAVING SUM(e.salary) > 1500000
 ORDER BY total_expense DESC;
 
 # Find the average salary of Developers in each department. Exclude departments where the average developer salary is less than ₹6,00,000. Sort the final output by the average salary.
+SELECT d.dept_name, CEIL(AVG(e.salary)) avg_sal
+FROM employee AS e
+JOIN department AS d
+ON e.dept_id = d.dept_id
+GROUP BY d.dept_name
+HAVING AVG(e.salary) > 600000
+ORDER BY avg_sal;
 
 # Write an SQL query to find all duplicate email addresses or employee names in the database.
 
