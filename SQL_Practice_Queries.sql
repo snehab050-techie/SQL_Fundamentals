@@ -133,6 +133,13 @@ WHERE d.row_rank <=3;
 #IN vs EXISTS
 
 # Write a query to find the total salary spent on each department. Only include departments where the total expenditure is greater than ₹15,00,000, and sort the result in descending order of the total expense.
+SELECT d.dept_name, SUM(e.salary) total_expense
+FROM employee AS e
+JOIN department AS d
+ON e.dept_id = d.dept_id
+GROUP BY d.dept_name
+HAVING SUM(e.salary) > 1500000
+ORDER BY total_expense DESC;
 
 # Find the average salary of Developers in each department. Exclude departments where the average developer salary is less than ₹6,00,000. Sort the final output by the average salary.
 
