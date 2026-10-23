@@ -211,6 +211,13 @@ FROM employees
 GROUP BY department
 HAVING AVG(salary) >= 50000 AND AVG(salary) <= 70000;
 
+#alternative - BETWEEN is inclusive in SQL
+
+SELECT department, AVG(salary) avg_sal
+FROM employees
+GROUP BY department
+HAVING avg_sal BETWEEN 50000 AND 70000;
+
 #33. Display the city and total salary for each city, but only include cities where 
 # the total salary is greater than ₹1,00,000. Sort the result by total salary in descending order.
 SELECT city, SUM(salary) total_salary
