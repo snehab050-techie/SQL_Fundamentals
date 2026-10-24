@@ -323,6 +323,12 @@ FROM employees
 ORDER BY salary DESC
 LIMIT 1);
 
+SELECT *
+FROM employees
+WHERE salary =
+(SELECT MAX(salary)
+FROM employees);
+
 #47. Find the employee(s) who have the second-highest salary in the company.
 SELECT *
 FROM employees
