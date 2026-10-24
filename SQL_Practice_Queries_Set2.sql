@@ -387,6 +387,15 @@ WHERE (e.department, e.salary) IN
 FROM employees
 GROUP BY department);
 
+#using co-related subquery
+	
+SELECT *
+FROM employees AS e2
+WHERE e2.salary =
+(SELECT MAX(salary) high_sal
+FROM employees AS e1
+WHERE e1.department = e2.department);
+
 #55. Find the employees whose salary is higher than the average salary of 
 # their own department.
 SELECT e.*
