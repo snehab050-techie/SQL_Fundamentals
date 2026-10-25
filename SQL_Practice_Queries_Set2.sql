@@ -539,6 +539,15 @@ FROM employees
 #67. Find the employees whose salary is the second-highest salary in their 
 # respective cities.
 
+SELECT *
+FROM employees AS e
+WHERE e.salary =
+(SELECT salary
+FROM employees
+WHERE city = e.city
+ORDER BY salary DESC
+LIMIT 1 OFFSET 1);
+
 ---------------------------
 
 # SQL Joins - are used to combine rows from two or more tables based on a related column between them.
