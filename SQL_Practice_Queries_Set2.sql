@@ -483,6 +483,15 @@ WHERE (e.city, e.salary) IN
 FROM employees
 GROUP BY city);
 
+#using co-related subquery
+	
+SELECT e.*
+FROM employees AS e
+WHERE e.salary =
+(SELECT MAX(salary)
+FROM employees
+WHERE city = e.city);
+
 #62. Find the city with the second-highest average salary.
 SELECT city, AVG(salary) avg_salary
 FROM employees
