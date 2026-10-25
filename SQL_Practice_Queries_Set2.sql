@@ -443,6 +443,14 @@ FROM employees
 WHERE department = e.department
 GROUP BY department);
 
+#no need to group by again
+SELECT e.*
+FROM employees AS e
+WHERE e.experience >
+(SELECT AVG(experience) avg_exp
+FROM employees
+WHERE department = e.department);
+
 #59. Find the department(s) where the difference between the highest 
 # salary and the lowest salary is greater than 20,000.
 SELECT e.*
