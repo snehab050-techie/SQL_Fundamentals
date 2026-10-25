@@ -425,6 +425,13 @@ WHERE department = e.department
 ORDER BY salary
 LIMIT 1);
 
+SELECT e.department, e.employee_id, e.name, e.salary
+FROM employees AS e
+WHERE e.salary =
+(SELECT MIN(salary) low_sal
+FROM employees
+WHERE department = e.department);
+
 #58. Find the employees who have more experience than the average 
 # experience of their department.
 SELECT e.*
