@@ -95,3 +95,5 @@ FROM orders)
 SELECT order_id, customer_id, order_date, amount,cust_ord
 FROM c
 WHERE cust_ord = 1;
+
+#Write a query to find the "Top N per Group" (e.g., Top 2 highest-paid employees per department).
