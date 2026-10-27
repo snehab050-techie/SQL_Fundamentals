@@ -1,0 +1,111 @@
+SQL Window Functions
+------------------------
+
+1. First, why do we need Window Functions?
+
+Imagine you have an employee table like this:
+
+emp_name	department	salary
+Sneha	           IT	        60000
+Arun	           IT	        80000
+Priya	           HR	        50000
+Rahul	           HR	        70000
+Kiran	           IT	        60000
+
+Queries like: 
+
+1. Find the salary rank of every employee.
+2. Find the highest salary in each department.
+3. Show each employee's salary alongside their department's average salary.
+4. Find the second-highest salary in each department.
+5. Calculate a running total of salaries.
+
+These are exactly the kinds of problems where Window Functions are extremely useful.
+
+But here's the important question: why not just use GROUP BY?
+
+Suppose we write:
+
+SELECT department, AVG(salary)
+FROM employees
+GROUP BY department;
+
+
+Output:
+department	avg(salary)
+HR	          60000
+IT	          66666.67
+
+This works, but notice something: the individual employee rows have disappeared. We get one row per department.
+
+What if we want to see every employee and their department's average salary?
+
+That's where a Window Function comes in.
+
+---------------------------------------------
+
+A Window Function performs a calculation across related rows while keeping the individual rows in the result.
+
+Example:
+
+SELECT
+    emp_name,
+    department,
+    salary,
+    AVG(salary) OVER (PARTITION BY department) AS dept_avg_salary
+FROM employees;
+
+emp_name	department	salary	dept_avg_salary
+Sneha	           IT	         60000	66666.67
+Arun	           IT	         80000	66666.67
+Priya	           HR	         50000	60000
+
+Every employee row is preserved.
+Each employee also gets their department's average salary.
+The average is calculated separately for IT and HR.
+
+There are three important parts:
+
+- AVG(salary) — the calculation.
+- OVER() — tells SQL to perform the calculation as a window function.
+- PARTITION BY department — splits rows into department groups for the calculation.
+
+Think of PARTITION BY as grouping rows for a calculation, but without collapsing those rows into one.
+
+-------------------
+
+Window Functions vs GROUP BY
+
+            GROUP BY	                                     Window Function
+Combines rows into groups	                            Keeps individual rows
+Usually returns one row per group	                    Usually returns one result per input row
+Example: average salary per department	                Example: each employee's salary and department average
+
+Remember: Window Functions can also be used without PARTITION BY.
+
+SELECT
+    emp_name,
+    salary,
+    AVG(salary) OVER () AS company_avg
+FROM employees;
+
+Here, every employee sees the average salary across the entire table.
+
+The four most important Window Function concepts
+----------------------------------------------------
+
+1. Ranking functions
+
+ROW_NUMBER(), RANK(), DENSE_RANK()
+
+2. Aggregate window functions
+
+SUM(), AVG(), COUNT(), MIN(), MAX()
+
+3. Value and offset functions
+
+LAG(), LEAD(), FIRST_VALUE(), LAST_VALUE()
+
+4. Ordering and frames
+
+ORDER BY, ROWS BETWEEN, running totals
