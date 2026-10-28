@@ -135,3 +135,56 @@ FROM products;
 SELECT product_name, category, price,
 	   RANK() OVER(PARTITION BY category ORDER BY price DESC) AS price_rank
 FROM products;
+
+#3. Write a query displaying product_name, category, price, and price_rank, with these requirements:
+#- Rank products separately within each category.
+#- Highest price gets rank 1.
+#- Products with the same price share a rank.
+#- The next rank after a tie must not skip a number.
+
+SELECT product_name, category, price,
+	   DENSE_RANK() OVER(PARTITION BY category ORDER BY price DESC) AS price_rank
+FROM products;
+
+#4. Find the most expensive product in each category
+
+#Task: Write a SQL query that returns only the most expensive product or products 
+#in each category.
+
+#Display:
+#- product_name
+#- category
+#- price
+
+#Important: if multiple products tie for the highest price in a category, 
+#return all tied products.
+
+WITH hpc AS
+(SELECT product_name, category, price,
+	   DENSE_RANK() OVER(PARTITION BY category ORDER BY price DESC) AS price_rank
+FROM products)
+SELECT product_name, category, price
+FROM hpc
+WHERE hpc.price_rank = 1;
+
+#5. Find the second-highest distinct price
+
+#Task: Write a SQL query to find the second-highest distinct price in each category, 
+#returning every product that has that price.
+
+#Display product_name, category, and price.
+
+#For example, in Clothing, the distinct prices are 1500 and 700. 
+#The second-highest distinct price is 700.
+
+#Important: Rank distinct price levels, not individual products. 
+#If multiple products share the second-highest price, return all of them.
+
+WITH prod_rank
+AS
+(SELECT product_name, category, price,
+	    DENSE_RANK() OVER(PARTITION BY category ORDER BY price DESC) as price_rank 
+FROM products)
+SELECT product_name, category, price
+FROM prod_rank
+WHERE price_rank = 2;
