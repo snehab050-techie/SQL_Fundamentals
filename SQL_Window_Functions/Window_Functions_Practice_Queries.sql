@@ -88,12 +88,38 @@ SELECT * FROM orders;
 #- amount
 #If a customer has multiple orders, only their most recent order should appear.
 
-WITH c AS
-(SELECT order_id, customer_id, order_date, amount,
+SELECT order_id, customer_id, order_date, amount,
 	   ROW_NUMBER() OVER(PARTITION BY customer_id ORDER BY ORDER_DATE DESC) AS cust_ord
-FROM orders)
-SELECT order_id, customer_id, order_date, amount,cust_ord
-FROM c
-WHERE cust_ord = 1;
+FROM orders;
 
 #Write a query to find the "Top N per Group" (e.g., Top 2 highest-paid employees per department).
+
+-- Products Table
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(50),
+    category VARCHAR(50),
+    price DECIMAL(10, 2)
+);
+
+USE window_functions;
+
+INSERT INTO products (product_id, product_name, category, price)
+VALUES
+    (1, 'Mouse', 'Electronics', 500),
+    (2, 'Keyboard', 'Electronics', 1200),
+    (3, 'Monitor', 'Electronics', 8000),
+    (4, 'Shirt', 'Clothing', 700),
+    (5, 'Jeans', 'Clothing', 1500),
+    (6, 'Jacket', 'Clothing', 1500);
+    
+#Write a query displaying product_name, category, price, and row_num.
+#- Number products separately within each category.
+#- Sort by price from lowest to highest.
+#- Keep all six product rows.
+
+SELECT * FROM products;
+
+SELECT product_name, category, price,
+	   ROW_NUMBER() OVER(PARTITION BY category ORDER BY price) AS prod_row_num
+FROM products;
