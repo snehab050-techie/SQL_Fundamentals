@@ -188,3 +188,28 @@ FROM products)
 SELECT product_name, category, price
 FROM prod_rank
 WHERE price_rank = 2;
+
+#6. Find the top 2 distinct price levels in each category and 
+#return every product belonging to those price levels.
+
+#For example, in Clothing, return Jeans, Jacket, and Shirt.
+WITH prod_rank
+AS
+(SELECT product_name, category, price,
+		DENSE_RANK() OVER(PARTITION BY category ORDER BY price DESC) AS price_rank
+FROM products)
+SELECT product_name, category, price
+FROM prod_rank
+WHERE price_rank <=2;
+
+#7. Find the most expensive product in each category, 
+#but return exactly one product per category, 
+#even when multiple products have the same price.
+WITH prod_rank
+AS
+(SELECT product_name, category, price,
+       ROW_NUMBER() OVER(PARTITION BY category ORDER BY price DESC, product_id) AS price_rank
+FROM products)
+SELECT product_name, category, price
+FROM prod_rank
+WHERE price_rank = 1;
