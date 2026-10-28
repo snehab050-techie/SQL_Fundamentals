@@ -113,7 +113,7 @@ VALUES
     (5, 'Jeans', 'Clothing', 1500),
     (6, 'Jacket', 'Clothing', 1500);
     
-#Write a query displaying product_name, category, price, and row_num.
+#1. Write a query displaying product_name, category, price, and row_num.
 #- Number products separately within each category.
 #- Sort by price from lowest to highest.
 #- Keep all six product rows.
@@ -122,4 +122,16 @@ SELECT * FROM products;
 
 SELECT product_name, category, price,
 	   ROW_NUMBER() OVER(PARTITION BY category ORDER BY price) AS prod_row_num
+FROM products;
+
+#2. Write a query that displays product_name, category, price, and price_rank.
+
+#Requirements:
+#- Rank products within each category.
+#- Highest price gets rank 1.
+#- Products with the same price must share the same rank.
+#- After a tie, the next rank must skip a number.
+
+SELECT product_name, category, price,
+	   RANK() OVER(PARTITION BY category ORDER BY price DESC) AS price_rank
 FROM products;
