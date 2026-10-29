@@ -213,3 +213,32 @@ FROM products)
 SELECT product_name, category, price
 FROM prod_rank
 WHERE price_rank = 1;
+
+#start from -- > 
+
+#8. Find the difference between a row and a group
+#Using the same products table, find the second most expensive product in each category, 
+#returning exactly one product per category. If two products tie on price, choose the one with the smaller product_id.
+
+WITH prod_rank
+AS
+(
+SELECT product_id, product_name, category, price,
+	   ROW_NUMBER() OVER(PARTITION BY category ORDER BY price DESC, product_id ASC) AS prod_num
+FROM products)
+SELECT product_id, product_name, category, price
+FROM prod_rank
+WHERE prod_num = 2;
+
+-- LAG() - helps compare a row with the previous row without joining a table to itself.
+
+#9. Using the existing products table, write a query that displays:
+#- product_name
+#- category
+#- price
+#- previous_price — the price of the previous product in the same category
+
+# LAG(price) can access the previous row's price.
+
+
+
