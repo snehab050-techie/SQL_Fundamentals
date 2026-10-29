@@ -1,0 +1,47 @@
+Basics
+---------
+
+1) What is a window function? How is it different from GROUP BY?
+
+- Window function perform operations across related rows, by keeping individual rows in the result.
+
+- Group by groups rows into one and produces one row result per condtion. Whereas a window function performs opearation on related rows, without combining rows into one.
+
+- Example for Group BY : To calculate average salary of employees department wise
+
+- Example for Window func : To display all employee details along with their own departments avg salary
+
+2) What do OVER() and PARTITION BY do?
+
+- OVER() tells SQL to consider the operation as a window function
+
+- PARTITION BY - calculates by grouping related rows, but without combining them into one row. 
+
+3) Difference between ROW_NUMBER(), RANK(), and DENSE_RANK().
+
+- ROW_NUMBER() - gives every row a unique number
+
+- RANK() - ties share same rank, with gap after a tie
+
+- DENSE_RANK() - ties share same rank, without gap after a tie
+
+4) Rank employees by salary within each department.
+
+SELECT name, salary, department_id,
+       DENSE_RANK() OVER(PARTITION BY department_id ORDER BY salary DESC) AS sal_rank
+FROM employees;
+
+5) Find the second-highest distinct salary.
+
+-- using ROW_NUMBER() as to fetch only distinct salary
+
+WITH result
+AS
+(SELECT name, salary, department_id,
+	   ROW_NUMBER() OVER(PARTITION BY department_id ORDER BY salary DESC, employee_id ASC) AS sal_rank
+FROM employees)
+SELECT *
+FROM result
+WHERE sal_rank = 2;
+
+6) Find the highest-paid employee in each department.

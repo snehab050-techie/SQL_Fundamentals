@@ -293,3 +293,37 @@ SELECT *,
         ORDER BY price ASC, product_id ASC
         ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS most_expensive_price 
 FROM products;
+
+-- Other important questions
+
+USE practice_joins;
+
+SHOW tables;
+
+SELECT * FROM employees;
+
+-- 1) Rank employees by salary within each department.
+SELECT name, salary, department_id,
+       DENSE_RANK() OVER(PARTITION BY department_id ORDER BY salary DESC) AS sal_rank
+FROM employees;
+
+-- 2) Find the second-highest distinct salary within each category
+-- using ROW_NUMBER() as to fetch only distinct salary
+WITH result
+AS
+(SELECT name, salary, department_id,
+	   ROW_NUMBER() OVER(PARTITION BY department_id ORDER BY salary DESC, employee_id ASC) AS sal_rank
+FROM employees)
+SELECT *
+FROM result
+WHERE sal_rank = 2;
+
+-- 3) Find the highest-paid employee in each department.
+WITH result
+AS
+(SELECT name, salary, city, department_id,
+	   DENSE_RANK() OVER(PARTITION BY department_id ORDER BY salary DESC) AS sal_rank
+FROM employees)
+SELECT *
+FROM result
+WHERE sal_rank = 1;
