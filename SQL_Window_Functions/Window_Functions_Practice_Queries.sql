@@ -271,3 +271,25 @@ FROM products;
 SELECT *,
 		SUM(price) OVER(partition by category ORDER BY product_id) AS running_total
 FROM products;
+
+-- 13. FIRST_VALUE()
+
+-- Using the existing products table, write a query displaying:
+-- - product_name
+-- - category
+-- - price
+-- - cheapest_price — the cheapest price in that product's category, repeated on every row.
+
+SELECT *,
+	   FIRST_VALUE(price) OVER(PARTITION BY category ORDER BY price ASC, product_id ASC) AS cheapest_price
+FROM products;
+
+-- 14. Using the same products table, display all the columns plus most_expensive_price, 
+-- showing the most expensive price in each category on every row.
+
+SELECT *,
+		LAST_VALUE(price) OVER(
+        PARTITION BY category 
+        ORDER BY price ASC, product_id ASC
+        ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS most_expensive_price 
+FROM products;
