@@ -240,5 +240,34 @@ WHERE prod_num = 2;
 
 # LAG(price) can access the previous row's price.
 
+SELECT product_name, category, price,
+	   LAG(price) OVER(PARTITION BY category ORDER BY price ASC) AS previous_price
+FROM products;
 
+-- 10. Using the same products table, display:
+-- - product_name
+-- - category
+-- - price
+-- - previous_price
+-- - price_difference — current price minus previous price - for each category
+-- Your task: Write the complete query.
+SELECT product_name, category, price,
+       LAG(price) OVER(PARTITION BY category ORDER BY price ASC, product_id ASC) AS previous_price,
+       (price - LAG(price) OVER(PARTITION BY category ORDER BY price ASC, product_id ASC)) AS price_difference
+FROM products;
 
+-- LEAD() - helps compare a row with the next row without joining a table to itself.
+
+-- 11. Using the same products table, write a query to display:
+-- - product_name
+-- - category
+-- - price
+-- - next_price — the next product's price within the same category, ordered from cheapest to most expensive.
+SELECT product_name, category, price,
+       LEAD(price) OVER(PARTITION BY category ORDER BY price ASC, product_id ASC) AS next_price 
+FROM products;
+
+-- 12. calculate the running total of each product within category
+SELECT *,
+		SUM(price) OVER(partition by category ORDER BY product_id) AS running_total
+FROM products;
