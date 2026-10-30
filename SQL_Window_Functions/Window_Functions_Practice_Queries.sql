@@ -339,5 +339,32 @@ SELECT *
 FROM result
 WHERE sal_rank <= 3;
 
--- 5) 
+-- 5) Find the second-highest salary in each department, including ties.
+WITH result
+AS
+(SELECT name, salary, department_id,
+	   DENSE_RANK() OVER(PARTITION BY department_id ORDER BY salary DESC) AS sal_rank 
+FROM employees)
+SELECT *
+FROM result
+WHERE sal_rank = 2;
+
+-- 6) Find the latest order or record for each customer.
+
+USE window_functions;
+
+SHOW TABLES;
+
+SELECT * FROM ORDERS;
+
+WITH result
+AS
+(SELECT order_id, customer_id, order_date,
+		ROW_NUMBER() OVER(PARTITION BY customer_id ORDER BY order_date DESC) AS ord_num
+FROM orders)
+SELECT order_id, customer_id, order_date, ord_num
+FROM result
+WHERE ord_num = 1;
+
+
 

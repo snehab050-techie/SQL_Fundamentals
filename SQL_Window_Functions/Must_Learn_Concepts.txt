@@ -79,7 +79,17 @@ SELECT *
 FROM result
 WHERE sal_rank = 2;
 
-- Find the latest order or record for each customer.
+9) Find the latest order or record for each customer.
+
+WITH result
+AS
+(SELECT order_id, customer_id, order_date,
+		ROW_NUMBER() OVER(PARTITION BY customer_id ORDER BY order_date DESC) AS ord_num
+FROM orders)
+SELECT order_id, customer_id, order_date, ord_num
+FROM result
+WHERE ord_num = 1;
+
 - Remove duplicate records while keeping the latest one.
 - Find duplicate rows using ROW_NUMBER().
 - Calculate a running total using SUM() OVER().
