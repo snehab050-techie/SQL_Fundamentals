@@ -90,7 +90,18 @@ SELECT order_id, customer_id, order_date, ord_num
 FROM result
 WHERE ord_num = 1;
 
-- Remove duplicate records while keeping the latest one.
-- Find duplicate rows using ROW_NUMBER().
+10) Remove duplicate records while keeping the latest one.
+
+DELETE FROM cars
+WHERE model_id IN
+(SELECT model_id
+FROM(SELECT *,
+		ROW_NUMBER() OVER(PARTITION BY model_name, brand ORDER BY model_id ASC) AS dupli_rec 
+FROM cars) AS result
+WHERE dupli_rec >= 2);
+
+11) Find duplicate rows using ROW_NUMBER().
+
+
 - Calculate a running total using SUM() OVER().
 - Find department-wise total and average salary without losing employee rows.

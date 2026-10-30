@@ -366,5 +366,22 @@ SELECT order_id, customer_id, order_date, ord_num
 FROM result
 WHERE ord_num = 1;
 
+-- 7) Remove duplicate records while keeping the latest one.
 
+USE practice_sql;
+
+SHOW TABLES;
+
+SELECT * FROM cars;
+
+INSERT INTO cars
+VALUES(104,'slavia','yellow','skoda');
+
+DELETE FROM cars
+WHERE model_id IN
+(SELECT model_id
+FROM(SELECT *,
+		ROW_NUMBER() OVER(PARTITION BY model_name, brand ORDER BY model_id ASC) AS dupli_rec 
+FROM cars) AS result
+WHERE dupli_rec >= 2);
 
