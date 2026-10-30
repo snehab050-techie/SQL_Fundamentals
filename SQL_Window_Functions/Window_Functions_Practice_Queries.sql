@@ -419,3 +419,6 @@ FROM products;
 SELECT *,
 		SUM(price) OVER(PARTITION BY category ORDER BY product_id) AS running_total
 FROM products;
+
+-- Find department-wise total and average salary without losing employee rows.
+

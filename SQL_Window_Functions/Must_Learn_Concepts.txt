@@ -122,4 +122,11 @@ SELECT *,
 		SUM(price) OVER(PARTITION BY category ORDER BY product_id) AS running_total
 FROM products;
 
-- Find department-wise total and average salary without losing employee rows.
+13) Find department-wise total and average salary without losing employee rows.
+
+SELECT name, department, salary, city,
+	   SUM(salary) OVER(PARTITION BY department) AS dept_total_sal,
+       AVG(salary) OVER(PARTITION BY department) AS dept_avg_sal
+FROM employees;
+
+
