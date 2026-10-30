@@ -102,6 +102,24 @@ WHERE dupli_rec >= 2);
 
 11) Find duplicate rows using ROW_NUMBER().
 
+WITH result
+AS
+(SELECT *,
+	   ROW_NUMBER() OVER(PARTITION BY name, salary ORDER BY employee_id ASC) AS row_num
+FROM employees)
+SELECT employee_id, name, department, salary, row_num
+FROM result
+WHERE row_num >= 2;
 
-- Calculate a running total using SUM() OVER().
+12) Calculate a running total using SUM() OVER().
+
+SELECT *,
+       SUM(price) OVER(ORDER BY product_id ASC) AS runnig_total
+FROM products;
+
+// within each category
+SELECT *,
+		SUM(price) OVER(PARTITION BY category ORDER BY product_id) AS running_total
+FROM products;
+
 - Find department-wise total and average salary without losing employee rows.

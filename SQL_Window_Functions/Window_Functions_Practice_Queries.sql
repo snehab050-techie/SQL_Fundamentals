@@ -385,3 +385,37 @@ FROM(SELECT *,
 FROM cars) AS result
 WHERE dupli_rec >= 2);
 
+-- Find duplicate rows using ROW_NUMBER()
+
+USE practice_sql;
+
+SHOW tables;
+
+SELECT * from employees;
+
+INSERT INTO employees
+VALUES(114,'Sneha','HR',89000,'agd',7,2025);
+
+WITH result
+AS
+(SELECT *,
+	   ROW_NUMBER() OVER(PARTITION BY name, salary ORDER BY employee_id ASC) AS row_num
+FROM employees)
+SELECT employee_id, name, department, salary, row_num
+FROM result
+WHERE row_num >= 2;
+
+-- Calculate a running total using SUM() OVER()
+
+USE window_functions;
+SELECT * FROM products;
+
+SELECT *,
+		SUM(price) OVER(ORDER BY product_id ASC) AS running_total
+FROM products;
+
+-- within each category
+
+SELECT *,
+		SUM(price) OVER(PARTITION BY category ORDER BY product_id) AS running_total
+FROM products;
