@@ -45,3 +45,42 @@ FROM result
 WHERE sal_rank = 2;
 
 6) Find the highest-paid employee in each department.
+WITH result
+AS
+(SELECT name, salary, city, department_id,
+	   DENSE_RANK() OVER(PARTITION BY department_id ORDER BY salary DESC) AS sal_rank
+FROM employees)
+SELECT *
+FROM result
+WHERE sal_rank = 1;
+
+Intermediate - high priority
+--------------------------------
+
+7) Find the top 3 employees by salary in each department.
+
+WITH result
+AS
+(SELECT name, salary,department_id,
+		DENSE_RANK() OVER(PARTITION BY department_id ORDER BY salary DESC) AS sal_rank
+FROM employees)
+SELECT *
+FROM result
+WHERE sal_rank <= 3;
+
+8) Find the second-highest salary in each department, including ties.
+
+WITH result
+AS
+(SELECT name, salary, department_id,
+	   DENSE_RANK() OVER(PARTITION BY department_id ORDER BY salary DESC) AS sal_rank 
+FROM employees)
+SELECT *
+FROM result
+WHERE sal_rank = 2;
+
+- Find the latest order or record for each customer.
+- Remove duplicate records while keeping the latest one.
+- Find duplicate rows using ROW_NUMBER().
+- Calculate a running total using SUM() OVER().
+- Find department-wise total and average salary without losing employee rows.

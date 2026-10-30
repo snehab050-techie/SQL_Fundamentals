@@ -327,3 +327,17 @@ FROM employees)
 SELECT *
 FROM result
 WHERE sal_rank = 1;
+
+-- 4) Find the top 3 employees by salary in each department
+
+WITH result
+AS
+(SELECT name, salary,department_id,
+		DENSE_RANK() OVER(PARTITION BY department_id ORDER BY salary DESC) AS sal_rank
+FROM employees)
+SELECT *
+FROM result
+WHERE sal_rank <= 3;
+
+-- 5) 
+
