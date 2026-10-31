@@ -421,4 +421,26 @@ SELECT *,
 FROM products;
 
 -- Find department-wise total and average salary without losing employee rows.
+USE practice_sql;
+SELECT * FROM employees;
 
+SELECT name, department, salary, city,
+	   SUM(salary) OVER(PARTITION BY department) AS dept_total_sal,
+       AVG(salary) OVER(PARTITION BY department) AS dept_avg_sal
+FROM employees;
+
+-- Use LAG() to compare an employee's salary with their previous month's salary.
+USE practice_sql;
+SHOW TABLES;
+SELECT * FROM employees;
+SELECT *,
+	   LAG(salary) OVER(PARTITION BY employee_id ORDER BY employee_id ASC) AS prev_mon_sal
+FROM employees;
+
+-- Use LEAD() to find the next order date for each customer.
+
+USE window_functions;
+SELECT * FROM orders;
+SELECT *,
+		LAG(order_date) OVER(PARTITION BY customer_id ORDER BY order_id ASC) AS next_order_date
+FROM orders;
