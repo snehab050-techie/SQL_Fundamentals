@@ -471,4 +471,6 @@ SELECT *,
         MIN(salary) OVER(PARTITION BY department) AS min_sal
 FROM employees;
 
-SELECT * FROM employees;
+-- Calculate a cumulative total or a moving average.
+-- Explain why a window-function result usually needs a CTE or subquery before filtering.
+-- Explain window frames and why LAST_VALUE() can produce unexpected results.
