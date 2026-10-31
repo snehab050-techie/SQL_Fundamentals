@@ -444,3 +444,31 @@ SELECT * FROM orders;
 SELECT *,
 		LAG(order_date) OVER(PARTITION BY customer_id ORDER BY order_id ASC) AS next_order_date
 FROM orders;
+
+-- Calculate the difference between consecutive transactions.
+
+-- Find employees earning more than their department's average salary.
+SELECT *
+FROM employees AS e
+WHERE e.salary >
+(SELECT AVG(salary)
+FROM employees
+WHERE department = e.department);
+
+-- using window functions - employees earning more than their own department avg salary
+WITH result
+AS
+(SELECT *,
+	   AVG(salary) OVER(PARTITION BY department) AS dept_avg_sal
+FROM employees)
+SELECT *
+FROM result
+WHERE salary > dept_avg_sal;
+
+-- Find each department's highest and lowest salary alongside every employee.
+SELECT *,
+		MAX(salary) OVER(PARTITION BY department) AS max_sal,
+        MIN(salary) OVER(PARTITION BY department) AS min_sal
+FROM employees;
+
+SELECT * FROM employees;
