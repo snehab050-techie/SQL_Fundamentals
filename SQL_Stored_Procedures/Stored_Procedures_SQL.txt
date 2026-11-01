@@ -1,0 +1,123 @@
+
+SQL stored procedures
+---------------------
+
+A stored procedure is a group of SQL statements saved in the database under a name, which you can execute whenever we need it.
+
+It's like a reusable Java method, but it is stored and executed inside the database.
+
+Without a stored procedure
+Suppose if we want to retrieve an employee's details, we have to write and execute this SQL every time.
+
+SELECT *
+FROM employees
+WHERE employee_id = 101;
+
+With a stored procedure
+You save that SQL inside a procedure called GetEmployee:
+
+CALL GetEmployee(101);
+
+The database executes the SQL stored inside the procedure and returns the result.
+
+----------------
+
+Creating Procedure :
+
+DELIMETER //
+
+CREATE PROCEDURE GetAllEmployees()
+BEGIN
+	SELECT * FROM employees;
+END //
+
+DELIMETER;
+
+------------------
+
+Here:
+
+DELIMITER // temporarily changes the statement terminator so MySQL can recognize the entire procedure definition.
+
+CREATE PROCEDURE creates and saves the procedure.
+
+GetAllEmployees() is the procedure name.
+
+BEGIN and END enclose the SQL statements inside the procedure.
+
+DELIMITER ; restores the normal delimiter.
+
+----------------------
+
+CALL GetAllEmployees();
+
+---------------------
+
+Stored procedure with an input parameter:
+
+Suppose you want to retrieve employees from a particular department.
+
+DELIMETER //
+
+CREATE PROCEDURE GetEmployeeByDeptName(IN dept_name VARCHAR(50))
+BEGIN
+	SELECT *
+	FROM employees
+	WEHERE department = dept_name; 
+
+END //
+
+DELIMETER;
+
+---------
+
+CALL GetEmployeeByDeptName('IT');
+
+Here, IN means the procedure receives a value from the caller. In this example, 'IT' is passed into the parameter dept_name.
+
+-----------------------------------------------------------
+-----------------------------------------------------------
+
+Most important stored procedure questions
+
+1. What is a stored procedure?
+
+A reusable collection of SQL statements stored in the database and executed by calling its name.
+
+2. What are the advantages of stored procedure?
+
+Reusability, reduced network round trips, centralized database logic, and controlled access to data.
+
+3. Difference between stored procedure and a function?
+
+A procedure is called with CALL and can return result sets or output parameters. A function returns a value and can be used inside SQL expressions.
+
+4. What are IN, OUT and INOUT parameters?
+
+IN passes data into a procedure; OUT returns a value; INOUT accepts a value and can return an updated value.
+
+5. How do you execute a stored procedure in SQL?
+
+Use CALL procedure_name(arguments).
+
+6. Can sp contain multiple SQL statements?
+
+Yes. It can contain SELECT, INSERT, UPDATE, DELETE, and control-flow statements.
+
+7. How to handle errors in mysql stored procedure?
+
+Use DECLARE ... HANDLER to handle conditions such as SQL exceptions.
+
+8. How to call a stored procedure from Java?
+
+Use JDBC CallableStatement or Spring's JdbcTemplate / SimpleJdbcCall.
+
+----------------------
+
+Yes, procedures can call other procedures.
+
+A procedure is a named, stored database routine. A prepared statement is SQL prepared for execution, often with parameter binding.
+
+A cursor allows row-by-row processing of a query result.
+
+SP can reduce network round trips and reuse execution logic, but performance depends on the query, indexing, and database execution plan.
