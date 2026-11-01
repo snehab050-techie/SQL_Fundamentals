@@ -124,6 +124,11 @@ SP can reduce network round trips and reuse execution logic, but performance dep
 
 -------------------------
 
+OUT parameter
+An OUT parameter lets a stored procedure return a value to the caller.
+
+-------------------------
+
 IN -> Pass a value into the procedure.
 
 OUT -> Get a value back from the procedure.
