@@ -121,3 +121,11 @@ A procedure is a named, stored database routine. A prepared statement is SQL pre
 A cursor allows row-by-row processing of a query result.
 
 SP can reduce network round trips and reuse execution logic, but performance depends on the query, indexing, and database execution plan.
+
+-------------------------
+
+IN -> Pass a value into the procedure.
+
+OUT -> Get a value back from the procedure.
+
+INOUT -> Pass a value in and get an updated value back.
