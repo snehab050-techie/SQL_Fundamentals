@@ -96,6 +96,7 @@ BEGIN
     FROM employees
 	WHERE employee_id = emp_id;
 END //
+
 DELIMITER ;
 
 CALL IncreaseEmpSalary(500, 101, @increased_sal);
@@ -106,3 +107,21 @@ SELECT * FROM employees;
 
 -- Dropping procedure
 DROP PROCEDURE IF EXISTS PRACTICE_SQL.IncreaseEmpSalary;
+
+-- Write a stored procedure named CalculateBonus that:
+-- Accepts an employee's salary using an INOUT parameter called emp_salary.
+-- Adds a 10% bonus to the salary.
+-- Returns the updated salary through the same parameter.
+
+DELIMITER //
+
+CREATE PROCEDURE CalculateBonus(INOUT emp_salary DECIMAL(10,2))
+BEGIN
+	SET emp_salary = emp_salary * 1.10;
+END //
+
+DELIMITER ;
+
+CALL CalculateBonus(@emp_salary);
+
+SELECT @emp_salary;
