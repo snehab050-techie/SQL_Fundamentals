@@ -67,3 +67,42 @@ DELIMITER ;
 CALL GetEmpCount(@total);
 
 SELECT @total;
+
+-- INOUT prameter
+
+-- 1) Here the INOUT changes parameter -- without modifying the actual employee table values
+DELIMITER //
+
+CREATE PROCEDURE InsreaseEmpSal(INOUT emp_sal DECIMAL(10,2))
+BEGIN
+	SET emp_sal = emp_sal + 500;
+END //
+
+DELIMITER ;
+
+SELECT @emp_sal;
+
+-- 2) Here actual employee salary is increased and the updated salary is returned
+DELIMITER //
+
+CREATE PROCEDURE IncreaseEmpSalary(IN bonus DECIMAL(10,2), IN emp_id INT, OUT new_sal DECIMAL(10,2))
+BEGIN
+	UPDATE employees
+    SET salary = salary + bonus
+    WHERE employee_id = emp_id;
+    
+    SELECT salary
+    INTO new_sal
+    FROM employees
+	WHERE employee_id = emp_id;
+END //
+DELIMITER ;
+
+CALL IncreaseEmpSalary(500, 101, @increased_sal);
+
+SELECT @increased_sal;
+
+SELECT * FROM employees;
+
+-- Dropping procedure
+DROP PROCEDURE IF EXISTS PRACTICE_SQL.IncreaseEmpSalary;

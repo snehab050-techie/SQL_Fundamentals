@@ -151,6 +151,22 @@ Here, @total is a variable that stores a value for your current database session
 
 Note: @total is not a variable declared inside the procedure. It belongs to our MySQL session, so we can access it in separate SQL statements in that same session.
 
+--------
+
+INOUT parameter :
+
+An INOUT parameter allows us to:
+
+1. Pass a value into a stored procedure.
+2. Modify that value inside the procedure.
+3. Return the modified value to the caller.
+
+Think of it like a Java method that accepts a value, changes it, and returns the result.
+
+Example: Increase a salary
+Suppose we want to increase an employee's salary by ₹5,000.
+
+Note: INOUT modifies a parameter value, while UPDATE modifies actual table data. We can use both in a procedure, depending on what we need.
 ------------------------
 
 IN -> Pass a value into the procedure.
@@ -158,3 +174,4 @@ IN -> Pass a value into the procedure.
 OUT -> Get a value back from the procedure.
 
 INOUT -> Pass a value in and get an updated value back.
+
