@@ -124,10 +124,34 @@ SP can reduce network round trips and reuse execution logic, but performance dep
 
 -------------------------
 
-OUT parameter
+OUT parameter :
+
 An OUT parameter lets a stored procedure return a value to the caller.
 
--------------------------
+DELIMITER //
+
+CREATE PROCEDURE GetEmployeeCount(OUT total_count INT)
+BEGIN
+	SELECT COUNT(*)
+	INTO total_count
+	FROM employees
+END //
+
+DELIMITER ;
+
+> Call it using MySQL user-session variable
+
+CALL GetEmployeeCount(@total);
+
+SELECT @total;
+
+Here, in Mysql a variable starting with @ is a user-defined session variable.
+
+Here, @total is a variable that stores a value for your current database session.
+
+Note: @total is not a variable declared inside the procedure. It belongs to our MySQL session, so we can access it in separate SQL statements in that same session.
+
+------------------------
 
 IN -> Pass a value into the procedure.
 

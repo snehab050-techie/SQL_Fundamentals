@@ -48,3 +48,22 @@ DELIMITER ;
 
 -- calling the procedure
 CALL GetEmployeesBySalary(40000);
+
+-- OUT parameter : It lets a stored procedure return a value to the caller
+
+-- Create a sp to return count of employees
+
+DELIMITER //
+
+CREATE PROCEDURE GetEmpCount(OUT total_count INT)
+BEGIN
+	SELECT COUNT(*)
+	INTO total_count
+    FROM employees;
+END //
+
+DELIMITER ;
+
+CALL GetEmpCount(@total);
+
+SELECT @total;
