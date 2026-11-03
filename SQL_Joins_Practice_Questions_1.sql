@@ -71,6 +71,13 @@ ORDER BY dept_id) AS r
 INNER JOIN Department AS d
 ON r.dept_id = d.dept_id;
 
+-- alternative
+SELECT d.dept_name, COUNT(*) emp_count
+FROM employee AS e
+INNER JOIN department AS d
+ON e.dept_id = d.dept_id
+GROUP BY d.dept_name;
+
 -- 6) Display all employees even 
 -- if they don't belong to any department
 SELECT e.emp_name,d.dept_name
