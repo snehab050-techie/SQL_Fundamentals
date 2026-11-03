@@ -125,3 +125,66 @@ DELIMITER ;
 CALL CalculateBonus(@emp_salary);
 
 SELECT @emp_salary;
+
+-- Condtional statements in stored procedures
+-- IF, ELSEIF, ELSE
+
+-- Example - to ctegorize employees based on salary
+DELIMITER //
+
+CREATE PROCEDURE GetSalaryCategory(
+    IN emp_id INT,
+    OUT salary_category VARCHAR(20)
+)
+BEGIN
+    DECLARE emp_salary DECIMAL(10,2);
+
+    SELECT salary
+    INTO emp_salary
+    FROM employees
+    WHERE employee_id = emp_id;
+
+    IF emp_salary >= 70000 THEN
+        SET salary_category = 'High Salary';
+    ELSEIF emp_salary >= 50000 THEN
+        SET salary_category = 'Medium Salary';
+    ELSE
+        SET salary_category = 'Low Salary';
+    END IF;
+END //
+
+DELIMITER ;
+
+-- Write a stored procedure named CheckEmployeeSalary that:
+-- Accepts an employee ID as an IN parameter.
+-- Returns a message through an OUT parameter named salary_message.
+-- If salary is greater than ₹60,000, return 'Salary is above 60000'.
+-- Otherwise, return 'Salary is 60000 or below'.
+USE practice_sql;
+
+DELIMITER //
+
+CREATE PROCEDURE CheckEmployeeSalary(IN emp_id INT, OUT salary_message VARCHAR(50))
+BEGIN
+	DECLARE emp_sal DECIMAL(10,2);
+    
+    SELECT salary
+    INTO emp_sal
+    FROM employees
+    WHERE employee_id = emp_id;
+    
+    IF emp_sal > 60000 THEN
+		SET salary_message = 'Salary is above 60000';
+	ELSE
+		SET salary_message = 'Salary is 60000 or below';
+	END IF;
+END //
+
+DELIMITER ;
+
+CALL CheckEmployeeSalary(103, @sal_msg);
+
+SELECT @sal_msg;
+
+DROP PROCEDURE IF EXISTS PRACTICE_SQL.CheckEmployeeSalary;
+

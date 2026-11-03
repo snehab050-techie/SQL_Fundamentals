@@ -175,3 +175,59 @@ OUT -> Get a value back from the procedure.
 
 INOUT -> Pass a value in and get an updated value back.
 
+---------------------------
+
+Conditional statements in stored procedures:
+
+
+IF, ELSEIF, and ELSE
+
+Example: Suppose we want to categorize employees based on their salary:
+
+- Salary ≥ 70,000 --> High Salary
+- Salary ≥ 50,000 --> Medium Salary
+- Otherwise --> Low Salary
+
+DELIMITER //
+
+CREATE PROCEDURE GetSalaryCategory(
+    IN emp_id INT,
+    OUT salary_category VARCHAR(20)
+)
+BEGIN
+    DECLARE emp_salary DECIMAL(10,2);
+
+    SELECT salary
+    INTO emp_salary
+    FROM employees
+    WHERE employee_id = emp_id;
+
+    IF emp_salary >= 70000 THEN
+        SET salary_category = 'High Salary';
+    ELSEIF emp_salary >= 50000 THEN
+        SET salary_category = 'Medium Salary';
+    ELSE
+        SET salary_category = 'Low Salary';
+    END IF;
+END //
+
+DELIMITER ;
+
+CALL GetSalaryCategory(101, @category);
+SELECT @category;
+
+-----------
+
+Here:
+
+IN to receive the employee ID.
+
+DECLARE to create a local variable for the salary.
+
+SELECT ... INTO to retrieve the salary.
+
+IF ... ELSE to decide which message to return.
+
+OUT to send the message back to the caller.
+
+--------------------------------------
