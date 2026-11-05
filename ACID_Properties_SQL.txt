@@ -1,0 +1,38 @@
+ACID properties in SQL
+-------------------------
+
+Imagine you are using a banking app to send ₹500 to your friend. Two things must happen:
+
+1. ₹500 is subtracted from your account.
+2. ₹500 is added to your friend's account.
+What happens if the bank's internet crashes right after step 1? Your money disappears into thin air!
+To prevent nightmares like this, databases use a set of safety rules called ACID properties. ACID ensures that every transaction (a group of SQL actions) is completely safe, reliable, and error-free.
+Here is the breakdown of what ACID stands for, explained simply:
+
+1. Atomicity (All or Nothing)
+
+Think of a transaction like an atom—it cannot be split up.
+> Either everything in your request succeeds, or nothing happens at all.
+> In our bank example: If the system crashes halfway through, the database cancels the whole thing. Your ₹500 is safely put back into your account as if nothing ever started.
+
+2. Consistency (Follow the Rules)
+
+The database must always follow strict data rules before and after a change. It cannot break its own logic.
+> In our bank example: If your account cannot have a negative balance, the database will automatically block a transaction that tries to send more money than you actually have. The data always remains valid.
+
+3. Isolation (Don't Disturb Others)
+
+In the real world, millions of people use the same database at the exact same time. Isolation ensures that simultaneous transactions do not mess with each other.
+> In our bank example: If you and your dad both try to withdraw money from the same account at the exact same second, the database forces them to wait in a tiny virtual line. Transaction B won't see what Transaction A is doing until Transaction A is fully finished.
+
+4. Durability (Built to Last)
+
+Once a transaction is successful, it is written in stone.
+> In our bank example: Once you see the "Success" screen, even if the bank's power goes out or the server explodes a second later, your data is completely safe. The database saves it to a permanent hard drive so it will never be lost or forgotten.
+
+Quick Summary Table
+--------------------------
+Atomicity -	100% complete or 0% complete. No halfway.
+Consistency	- Data must obey all rules and numbers must add up.
+Isolation -	Transactions mind their own business and don't overlap.
+Durability - Once saved, it is permanent and cannot be lost.
