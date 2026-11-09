@@ -125,6 +125,19 @@ FROM EMPLOYEE AS e
 RIGHT JOIN DEPARTMENT AS d
 ON e.dept_id = d.dept_id;
 
+-- To fetch both matching and non-matching records from two table
+SELECT *
+FROM employee AS e
+LEFT JOIN department AS d
+ON e.dept_id = d.dept_id
+AND d.dept_name IS NULL
+UNION
+SELECT *
+FROM employee AS e
+RIGHT JOIN department AS d
+ON e.dept_id = d.dept_id
+AND e.emp_name IS NULL;
+
 -- 12) Display employee names whose department starts with 'H'
 SELECT e.emp_name, d.dept_name
 FROM EMPLOYEE AS e
