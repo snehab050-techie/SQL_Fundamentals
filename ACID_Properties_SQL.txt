@@ -12,6 +12,7 @@ Here is the breakdown of what ACID stands for, explained simply:
 1. Atomicity (All or Nothing)
 
 Think of a transaction like an atom—it cannot be split up.
+
 > Either everything in your request succeeds, or nothing happens at all.
 > In our bank example: If the system crashes halfway through, the database cancels the whole thing. Your ₹500 is safely put back into your account as if nothing ever started.
 
@@ -32,6 +33,7 @@ Once a transaction is successful, it is written in stone.
 
 Quick Summary Table
 --------------------------
+
 Atomicity -	100% complete or 0% complete. No halfway.
 Consistency	- Data must obey all rules and numbers must add up.
 Isolation -	Transactions mind their own business and don't overlap.
