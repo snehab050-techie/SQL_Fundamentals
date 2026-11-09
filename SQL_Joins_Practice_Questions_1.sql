@@ -324,3 +324,14 @@ WHERE e.salary = (
     FROM EMPLOYEE 
     WHERE dept_id = e.dept_id
 );
+
+-- alternative solution 
+
+SELECT p.project_name, e1.emp_id
+FROM employee AS e1
+JOIN project AS p
+ON e1.emp_id = p.emp_id
+WHERE (e1.dept_id, e1.salary) IN
+(SELECT e.dept_id, MAX(e.salary) max_sal
+FROM employee AS e
+GROUP BY e.dept_id);
