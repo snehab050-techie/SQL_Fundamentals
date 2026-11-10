@@ -142,6 +142,15 @@ ON e1.department_id = e2.department_id
 WHERE e1.name = 'Rahul'
 AND e2.name <> 'Rahul';
 
+-- alternative solution
+SELECT name
+FROM employees
+WHERE department_id =
+(SELECT department_id
+FROM employees
+WHERE name = 'Rahul')
+AND name != 'Rahul';
+
 #LEFT join
 #5. Write a query to display every employee's name and their 
 #department name. Employees should be displayed even if they don't 
