@@ -96,6 +96,14 @@ FROM employees AS e
 JOIN departments AS d
 ON e.department_id = d.department_id;
 
+-- refering to same employees table - manager id
+-- self join
+
+SELECT e1.name emp_name, e2.name mgr_name
+FROM employees AS e1
+JOIN employees AS e2
+ON e1.manager_id = e2.employee_id;
+
 #4. Write a query to display the names of employees who work 
 # in the same department as Rahul.
 
