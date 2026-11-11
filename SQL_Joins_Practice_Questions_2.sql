@@ -308,6 +308,17 @@ WHERE (e.department_id, e.salary) IN
 FROM employees
 GROUP BY department_id);
 
+-- window function
+-- considering employee table only - department_id
+WITH result
+AS
+(SELECT *,
+		DENSE_RANK() OVER(PARTITION BY department_id ORDER BY salary DESC) sal_rank
+FROM employees)
+SELECT name, salary, department_id
+FROM result
+WHERE sal_rank = 1;
+
 #20. Find employees whose salary is greater than the average 
 # salary of their own department.
 SELECT e1.name employee, d2.department_name department, e1.salary salary
