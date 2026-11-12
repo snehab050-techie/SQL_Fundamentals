@@ -408,6 +408,24 @@ WHERE e1.salary =
 (SELECT MAX(e.salary) highest_salary
 FROM employees AS e);
 
+-- using limit -- not efficient solution as we limit rows -- emp with same high sal wil be skipped
+SELECT e.name, d.department_name, e.salary
+FROM employees AS e
+JOIN departments AS d
+ON e.department_id = d.department_id
+ORDER BY e.salary DESC
+LIMIT 1;
+
+-- using window function - considering only employees table department_id
+WITH result
+AS
+(SELECT name, salary, department_id,
+		DENSE_RANK() OVER(ORDER BY salary DESC) as sal_rank
+FROM employees)
+SELECT *
+FROM result
+WHERE sal_rank = 1;
+
 #28. Find the departments where: The department has at least 2 employee 
 #AND the highest salary in that department is greater than 70,000 
 #AND display the department name, employee count, and highest salary
