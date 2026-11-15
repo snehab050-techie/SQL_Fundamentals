@@ -595,6 +595,15 @@ JOIN departments AS d
 ON e2.department_id = d.department_id
 WHERE e1.department_id = e2.department_id;
 
+-- Alternative simple version
+SELECT e1.name emp_name, d.department_name, e2.name mgr_name, d.department_name
+FROM employees AS e1
+JOIN employees AS e2
+ON e1.manager_id = e2.employee_id
+JOIN departments AS d
+ON e2.department_id = d.department_id
+WHERE e1.department_id = e2.department_id;
+
 #SELECT * FROM employees;
 #INSERT INTO employees
 #VALUES(107, "Alis",78000,"Nagpur",30,104);
