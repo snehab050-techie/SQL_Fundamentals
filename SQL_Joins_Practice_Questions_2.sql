@@ -669,6 +669,16 @@ WHERE e2.salary =
 FROM employees AS e1
 WHERE e1.department_id = e2.department_id);
 
+-- window function
+SELECT res.name emp_name, d.department_name, res.salary, res.sal_rank
+FROM
+(SELECT *,
+	   DENSE_RANK() OVER(PARTITION BY department_id ORDER BY salary DESC) AS sal_rank
+FROM employees) AS res
+JOIN departments AS d
+ON res.department_id = d.department_id
+WHERE res.sal_rank = 1;
+
 #45. Find employees whose manager belongs to a different department, 
 # and display the employee name, manager name, employee department, 
 # and manager department.
