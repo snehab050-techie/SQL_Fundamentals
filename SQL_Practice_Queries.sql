@@ -131,6 +131,8 @@ WHERE d.row_rank <=3;
 #16) Difference between WHERE and HAVING
 
 #IN vs EXISTS
+# IN - checks whether a value exists in lits of values - commonly used with suquery
+# Exists - checks whether the subquery returns atleast one matching row- commonly used with co-related subquery
 
 # Write a query to find the total salary spent on each department. Only include departments where the total expenditure is greater than ₹15,00,000, and sort the result in descending order of the total expense.
 SELECT d.dept_name, SUM(e.salary) total_expense
