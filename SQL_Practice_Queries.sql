@@ -34,6 +34,17 @@ FROM EMPLOYEE
 ORDER BY salary DESC
 LIMIT 1 OFFSET 2;
 
+-- Using window function and CTE
+
+WITH result
+AS
+(SELECT *,
+		DENSE_RANK() OVER(ORDER BY salary DESC) AS sal_rank
+FROM employee)
+SELECT *
+FROM result
+WHERE sal_rank = 6;
+
 -- 5) Employees earning above their department average
 SELECT e.emp_name,d.dept_name
 FROM EMPLOYEE AS e
