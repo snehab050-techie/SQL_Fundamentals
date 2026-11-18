@@ -66,6 +66,17 @@ CREATE TABLE NewEmp AS
 SELECT DISTINCT *
 FROM EMPLOYEE;
 
+-- using window function ROW_NUMBER()
+DELETE
+FROM employee
+WHERE emp_id IN
+(SELECT emp_id
+FROM 
+(SELECT *,
+		ROW_NUMBER() OVER(PARTITION BY emp_name, salary, dept_id ORDER BY emp_id) AS row_num
+FROM employee)
+WHERE row_num > 1);
+
 DROP TABLE Employee;
 ALTER TABLE NewEmp RENAME TO Employee;
 
