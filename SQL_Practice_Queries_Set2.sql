@@ -488,6 +488,13 @@ GROUP BY department) AS e
 ORDER BY highest_difference DESC
 LIMIT 1;
 
+-- alternative
+SELECT department, MIN(salary) min_sal, MAX(salary) max_sal
+FROM employees
+GROUP BY department
+ORDER BY (max_sal - min_sal) DESC
+LIMIT 1;
+
 #61. Find the employee(s) with the highest salary in each city.
 SELECT e.*
 FROM employees AS e
