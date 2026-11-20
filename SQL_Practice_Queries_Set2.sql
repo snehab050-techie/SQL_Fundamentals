@@ -405,6 +405,19 @@ WHERE e.salary >
 FROM employees
 WHERE department = e.department);
 
+-- alternative
+	
+WITH result
+AS
+(SELECT department, AVG(salary) avg_sal
+FROM employees
+GROUP BY department)
+SELECT e.name, e.salary, r.department, r.avg_sal  
+FROM result AS r
+JOIN employees AS e
+ON r.department = e.department
+WHERE e.salary > r.avg_sal;
+
 #56. Find the second-highest salary in each department.
 SELECT e.department, e.salary
 FROM employees AS e
