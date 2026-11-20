@@ -795,6 +795,10 @@ FROM
 FROM student
 WHERE city = 'Delhi') AS s;
 
+SELECT city, MAX(marks) max_marks
+FROM student
+WHERE city = 'Delhi';
+
 #Usage of Subqueries in SELECT statements - less used
 SELECT (SELECT MAX(marks) FROM student), name
 FROM student;
