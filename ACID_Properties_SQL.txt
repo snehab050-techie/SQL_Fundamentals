@@ -3,11 +3,7 @@ ACID properties in SQL
 
 Imagine you are using a banking app to send ₹500 to your friend. Two things must happen:
 
-1. ₹500 is subtracted from your account.
-2. ₹500 is added to your friend's account.
-What happens if the bank's internet crashes right after step 1? Your money disappears into thin air!
-To prevent nightmares like this, databases use a set of safety rules called ACID properties. ACID ensures that every transaction (a group of SQL actions) is completely safe, reliable, and error-free.
-Here is the breakdown of what ACID stands for, explained simply:
+
 
 1. Atomicity (All or Nothing)
 
