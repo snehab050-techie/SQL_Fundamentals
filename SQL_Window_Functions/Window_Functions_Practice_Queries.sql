@@ -105,6 +105,17 @@ WHERE latest_order = 1;
 
 #Write a query to find the "Top N per Group" (e.g., Top 2 highest-paid employees per department).
 
+#Top 2 highest-paid employees per department
+
+WITH result
+AS
+(SELECT *,
+		DENSE_RANK() OVER(PARTITION BY dept_id ORDER BY salary DESC) sal_rank_dept
+FROM employees)
+SELECT *
+FROM result
+WHERE sal_rabk_dept <= 2;
+
 -- Products Table
 CREATE TABLE products (
     product_id INT PRIMARY KEY,
