@@ -316,6 +316,12 @@ SELECT *,
         ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS most_expensive_price 
 FROM products;
 
+-- simple alternative using first_value() function
+
+SELECT *,
+	  FIRST_VALUE(price) OVER(PARTITION BY category ORDER BY price DESC) AS most_exp_prd
+FROM products;
+
 -- Other important questions
 
 USE practice_joins;
