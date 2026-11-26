@@ -92,6 +92,17 @@ SELECT order_id, customer_id, order_date, amount,
 	   ROW_NUMBER() OVER(PARTITION BY customer_id ORDER BY ORDER_DATE DESC) AS cust_ord
 FROM orders;
 
+# to fetch only the latest order for each customer
+
+WITH result
+AS
+(SELECT *,
+		ROW_NUMBER() OVER(PARTITION BY customer_id ORDER BY order_date DESC) AS latest_order
+FROM orders)
+SELECT *
+FROM result
+WHERE latest_order = 1;
+
 #Write a query to find the "Top N per Group" (e.g., Top 2 highest-paid employees per department).
 
 -- Products Table
