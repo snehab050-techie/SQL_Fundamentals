@@ -3,7 +3,7 @@ SQL Window Functions
 
 1. First, why do we need Window Functions?
 
-Imagine you have an employee table like this:
+Imagine we have an employee table like this:
 
 emp_name	department	salary
 Sneha	           IT	        60000
@@ -30,7 +30,6 @@ SELECT department, AVG(salary)
 FROM employees
 GROUP BY department;
 
-
 Output:
 department	avg(salary)
 HR	          60000
@@ -41,6 +40,8 @@ This works, but notice something: the individual employee rows have disappeared.
 What if we want to see every employee and their department's average salary?
 
 That's where a Window Function comes in.
+
+In Group By individual rows disappear! We can't navigate back to individual rows once they are grouped using Group By.
 
 ---------------------------------------------
 
@@ -93,7 +94,6 @@ Here, every employee sees the average salary across the entire table.
 
 The four most important Window Function concepts
 ----------------------------------------------------
-
 1. Ranking functions
 
 ROW_NUMBER(), RANK(), DENSE_RANK()
