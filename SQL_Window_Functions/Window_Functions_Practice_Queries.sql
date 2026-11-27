@@ -469,8 +469,13 @@ FROM employees;
 
 USE window_functions;
 SELECT * FROM orders;
+
 SELECT *,
-		LAG(order_date) OVER(PARTITION BY customer_id ORDER BY order_id ASC) AS next_order_date
+		LEAD(order_date) OVER(PARTITION BY customer_id ORDER BY ORDER_ID ASC) AS next_order_date
+FROM orders;
+
+SELECT *,
+		LAG(order_date) OVER(PARTITION BY customer_id ORDER BY order_id ASC) AS prev_order_date
 FROM orders;
 
 -- Calculate the difference between consecutive transactions.
