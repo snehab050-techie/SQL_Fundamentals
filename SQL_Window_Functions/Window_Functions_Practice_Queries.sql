@@ -505,5 +505,18 @@ SELECT *,
 FROM employees;
 
 -- Calculate a cumulative total or a moving average.
+
+-- Calculating the cumulative total (running total) for each product
+
+SELECT *,
+	   SUM(price) OVER(ORDER BY product_id) AS cumulative_total
+FROM products;
+
+-- Calculating the cumulative total (running total) for each product within thier own category
+
+SELECT *,
+		SUM(price) OVER(PARTITION BY category ORDER BY product_id) AS running_total
+FROM products;
+
 -- Explain why a window-function result usually needs a CTE or subquery before filtering.
 -- Explain window frames and why LAST_VALUE() can produce unexpected results.
