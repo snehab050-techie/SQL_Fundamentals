@@ -519,4 +519,20 @@ SELECT *,
 FROM products;
 
 -- Explain why a window-function result usually needs a CTE or subquery before filtering.
+Window functions are calculated after the WHERE clause is executed, so we cannot directly filter their results using WHERE. 
+We use a CTE or subquery to calculate the window function first and then filter the result in the outer query.
+
+Example:
+	
+WITH ranked AS (
+    SELECT emp_name, salary,
+           RANK() OVER (ORDER BY salary DESC) AS rnk
+    FROM employees
+)
+SELECT *
+FROM ranked
+WHERE rnk = 1;
+
+Here, the CTE calculates the rank first, and the outer query filters employees with rank 1.
+
 -- Explain window frames and why LAST_VALUE() can produce unexpected results.
