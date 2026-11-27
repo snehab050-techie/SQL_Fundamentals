@@ -536,3 +536,19 @@ WHERE rnk = 1;
 Here, the CTE calculates the rank first, and the outer query filters employees with rank 1.
 
 -- Explain window frames and why LAST_VALUE() can produce unexpected results.
+
+A window frame defines which rows are considered within a window function for the current row. 
+By default, LAST_VALUE() may return the current row's value or the last value within the default frame, rather than the last value of the entire partition, which can be unexpected.
+
+To get the actual last value of the entire partition, we explicitly define the window frame using "ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING".
+
+Example:
+	
+SELECT emp_name, salary,
+       LAST_VALUE(salary) OVER (
+           ORDER BY salary
+           ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+       ) AS last_salary
+FROM employees;
+
+This ensures the window frame includes all rows, so LAST_VALUE() returns the actual last salary in the window.
